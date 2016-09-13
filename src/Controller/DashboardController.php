@@ -2,6 +2,7 @@
 namespace Volante\SkyBukkit\Monitor\Src\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -11,10 +12,24 @@ use Symfony\Component\HttpFoundation\Response;
 class DashboardController extends Controller
 {
     /**
+     * @var EngineInterface
+     */
+    private $TemplateEngine;
+
+    /**
+     * DashboardController constructor.
+     * @param EngineInterface $TemplateEngine
+     */
+    public function __construct(EngineInterface $TemplateEngine)
+    {
+        $this->TemplateEngine = $TemplateEngine;
+    }
+
+    /**
      * @return Response
      */
     public function show()
     {
-        return new Response("test");
+        return $this->TemplateEngine->renderResponse('dashboard.html.twig');
     }
 }
