@@ -1,0 +1,3 @@
+services:
+    controller.ui.dashboard:
+        class: Volante\SkyBukkit\Monitor\Src\Controller\DashboardController

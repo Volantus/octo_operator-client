@@ -1,14 +1,23 @@
 {
-    "name": "volante/sky-bukkit-monitor",
-    "description": "Monitoring, configuration and remote controller for SkyBukkit",
-    "type": "project",
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "Marius Meißner",
-            "email": "info@marius-meissner.net"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
+  "name": "volante/sky-bukkit-monitor",
+  "description": "Monitoring, configuration and remote controller for SkyBukkit",
+  "type": "project",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Marius Meißner",
+      "email": "info@marius-meissner.net"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "symfony/symfony": "^3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Volante\\SkyBukkit\\Monitor\\": "",
+      "Volante\\SkyBukkit\\Monitor\\App\\": "app",
+      "Volante\\SkyBukkit\\Monitor\\Src\\": "src"
+    }
+  }
 }
