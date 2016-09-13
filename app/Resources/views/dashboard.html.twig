@@ -1,1 +1,64 @@
 {% extends 'base.html.twig' %}
+{% block header %}
+    <h1 class="ui top dividing inverted header">
+        <i class="dashboard icon"></i>
+        <div class="content">
+            Dashboard
+            <div class="sub header">Last update: 5 seconds before</div>
+        </div>
+    </h1>
+{% endblock %}
+{% block grid %}
+    <div class="row">
+        <div class="six wide column">
+            <h4 class="ui top inverted attached header">
+                <i class="map icon"></i>
+                <div class="content">
+                    Geo position
+                </div>
+            </h4>
+            <div class="ui attached inverted segment">
+                <p><br><br></p>
+                <p><br><br></p>
+            </div>
+        </div>
+        <div class="six wide column">
+            <h4 class="ui top inverted attached header">
+                <i class="map icon"></i>
+                <div class="content">
+                    Geo position
+                </div>
+            </h4>
+            <div class="ui attached inverted segment">
+                <p><br><br></p>
+                <p><br><br></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="eight wide column">
+            <h4 class="ui top inverted attached header">
+                <i class="map icon"></i>
+                <div class="content">
+                    Geo position
+                </div>
+            </h4>
+            <div class="ui attached inverted segment">
+                <p><br><br></p>
+                <p><br><br></p>
+            </div>
+        </div>
+        <div class="four wide column">
+            <h4 class="ui top inverted attached header">
+                <i class="map icon"></i>
+                <div class="content">
+                    Geo position
+                </div>
+            </h4>
+            <div class="ui attached inverted segment">
+                <p><br><br></p>
+                <p><br><br></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
