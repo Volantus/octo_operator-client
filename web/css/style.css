@@ -6,3 +6,7 @@ body {
     margin-left: -116px !important;
     padding-top: 15px;
 }
+
+#GeoPositionMap {
+    height: 25em;
+}

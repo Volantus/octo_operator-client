@@ -1,28 +1,35 @@
 {% extends 'base.html.twig' %}
+
+{% block jsScript %}
+    <script>
+        $(document).ready(function () {
+            app.DashboardController.init();
+        });
+    </script>
+{% endblock %}
+
 {% block header %}
-    <h1 class="ui top dividing inverted header">
+    <h1 class="ui top dividing inverted dark blue header">
         <i class="dashboard icon"></i>
         <div class="content">
             Dashboard
-            <div class="sub header">Last update: 5 seconds before</div>
+            <div class="sub header">Last update: 5 seconds ago</div>
         </div>
     </h1>
 {% endblock %}
+
 {% block grid %}
     <div class="row">
-        <div class="six wide column">
+        <div class="eight wide column">
             <h4 class="ui top inverted attached header">
                 <i class="map icon"></i>
                 <div class="content">
                     Geo position
                 </div>
             </h4>
-            <div class="ui attached inverted segment">
-                <p><br><br></p>
-                <p><br><br></p>
-            </div>
+            <div class="ui attached loading inverted dark blue segment" id="GeoPositionMap"></div>
         </div>
-        <div class="six wide column">
+        <div class="four wide column">
             <h4 class="ui top inverted attached header">
                 <i class="map icon"></i>
                 <div class="content">
