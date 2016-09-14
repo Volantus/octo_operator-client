@@ -1,4 +1,8 @@
 services:
-    controller.ui.dashboard:
-        class: Volante\SkyBukkit\Monitor\Src\Controller\DashboardController
-        arguments: ["@templating"]
+  controller.ui.dashboard:
+    class: Volante\SkyBukkit\Monitor\Src\Controller\UI\DashboardController
+    arguments: ["@templating"]
+  controller.api.flight-status-controller:
+    class: Volante\SkyBukkit\Monitor\Src\Controller\API\FlightStatusController
+  controller.api.geo-positions-controller:
+    class: Volante\SkyBukkit\Monitor\Src\Controller\API\GeoPositionsController

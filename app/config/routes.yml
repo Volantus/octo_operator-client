@@ -1,3 +1,18 @@
 dashboard:
-    path:      /
-    defaults:  { _controller: controller.ui.dashboard:show }
+    path: /
+    defaults: { _controller: controller.ui.dashboard:show }
+
+flightStatusCreation:
+    path: /api/flight-status
+    defaults: { _controller: controller.api.flight-status-controller:create }
+    methods:  [POST]
+
+GeoPositionsRead:
+    path: /api/geo-positions
+    defaults: { _controller: controller.api.geo-positions-controller:all }
+    methods: [GET]
+
+GeoPositionsDelete:
+    path: /api/geo-positions
+    defaults: { _controller: controller.api.geo-positions-controller:deleteAll }
+    methods: [DELETE]

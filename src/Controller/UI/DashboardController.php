@@ -1,5 +1,5 @@
 <?php
-namespace Volante\SkyBukkit\Monitor\Src\Controller;
+namespace Volante\SkyBukkit\Monitor\Src\Controller\UI;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class DashboardController
- * @package Volante\SkyBukkit\Monitor\Src\Controller
+ * @package Volante\SkyBukkit\Monitor\Src\Controller\UI
  */
 class DashboardController extends Controller
 {
