@@ -29,7 +29,7 @@ GeoPositionController.prototype.buildGeoPositionFromRequest = function (data) {
     var result = [];
 
     $.each(data, function (key, position) {
-        result.push(new GeoPosition(position.latitude, position.longitude, position.altimeter));
+        result.push(new GeoPosition(position.latitude, position.longitude, position.altitude));
     });
 
     return result;

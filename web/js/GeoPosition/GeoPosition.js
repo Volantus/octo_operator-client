@@ -1,6 +1,6 @@
-function GeoPosition(latitude, longitude, altimeter)
+function GeoPosition(latitude, longitude, altitude)
 {
     this.longitude = longitude;
     this.latitude = latitude;
-    this.altimeter = altimeter;
+    this.altitude = altitude;
 }
