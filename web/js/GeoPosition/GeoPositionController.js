@@ -34,3 +34,14 @@ GeoPositionController.prototype.buildGeoPositionFromRequest = function (data) {
 
     return result;
 };
+
+GeoPositionController.prototype.deleteAllGeoPositions = function (callback)
+{
+    $.ajax({
+        url: '/api/geo-positions',
+        method: 'DELETE',
+        success: function () {
+            callback();
+        }
+    });
+};

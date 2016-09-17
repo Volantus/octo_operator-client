@@ -63,3 +63,15 @@ MapController.prototype.render = function (elementId)
     var mapElement = document.getElementById(elementId);
     this.map = new google.maps.Map(mapElement, this.mapOptions);
 };
+
+MapController.prototype.resetMarker = function () {
+    if (this.polygon != undefined) {
+        this.polygon.setMap(null);
+        this.polygon = undefined;
+    }
+
+    if (this.currentPositionMarker != undefined) {
+        this.currentPositionMarker.setMap(null);
+        this.currentPositionMarker = undefined;
+    }
+};

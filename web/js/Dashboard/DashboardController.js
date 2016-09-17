@@ -1,6 +1,7 @@
 function DashboardController()
 {
     this.geoPositionSegment = $('#GeoPositionMap');
+    this.resetGeoPositionsButton = $('#geoPositionResetButton');
 }
 
 DashboardController.prototype.init = function ()
@@ -24,5 +25,14 @@ DashboardController.prototype.updateGeoPositionMap = function ()
         if (positions.length > 0) {
             app.MapController.setPreviousPositions(positions);
         }
+    });
+};
+
+DashboardController.prototype.resetGeoPositions = function ()
+{
+    this.resetGeoPositionsButton.addClass('loading');
+    app.GeoPositionController.deleteAllGeoPositions(function () {
+        app.MapController.resetMarker();
+        app.DashboardController.resetGeoPositionsButton.removeClass('loading');
     });
 };
