@@ -3,28 +3,15 @@ namespace Volante\SkyBukkit\Monitor\Src\FlightStatus\GeoPosition;
 
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
+use Volante\SkyBukkit\Monitor\Src\General\RedisRepository;
 use Volante\SkyBukkit\Monitor\Src\Persistence\RedisConnectionHandler;
 
 /**
  * Class GeoPositionRepository
  * @package Volante\SkyBukkit\Monitor\Src\FlightStatus\GeoPosition
  */
-class GeoPositionRepository
+class GeoPositionRepository extends RedisRepository
 {
-    /**
-     * @var AdapterInterface
-     */
-    private $cache;
-
-    /**
-     * GeoPositionRepository constructor.
-     * @param AdapterInterface $cache
-     */
-    public function __construct(AdapterInterface $cache = null)
-    {
-        $this->cache = $cache ?: new RedisAdapter(RedisConnectionHandler::getConnection());
-    }
-
     /**
      * @return GeoPosition[]
      */

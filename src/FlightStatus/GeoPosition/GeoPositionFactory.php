@@ -8,41 +8,32 @@ use Symfony\Component\Validator\Constraints\Required;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validation;
+use Volante\SkyBukkit\Monitor\Src\General\Factory;
 
 /**
  * Class GeoPositionFactory
  * @package Volante\SkyBukkit\Monitor\Src\FlightStatus\GeoPosition
  */
-class GeoPositionFactory
+class GeoPositionFactory extends Factory
 {
     /**
-     * @param array $data
-     * @return GeoPosition
+     * @inheritdoc
      */
-    public static function createFromRequest(array $data) : GeoPosition
+    protected function build(array $data)
     {
-        self::validate($data);
         return new GeoPosition($data['latitude'], $data['longitude'], $data['altitude']);
     }
 
     /**
-     * @param array $data
+     * @inheritdoc
      */
-    private static function validate(array $data)
+    protected function getConstraint(): array
     {
-        $constraints = new Collection([
+        return [
             'latitude'  => new Required([new NotBlank(), new Type('numeric')]),
             'longitude' => new Required([new NotBlank(), new Type('numeric')]),
             'altitude' => new Required([new NotBlank(), new Type('numeric')]),
             'measurementTime' => new Optional()
-        ]);
-
-        $validator = Validation::createValidator();
-        $violations =  $validator->validate($data, $constraints);
-
-        foreach ($violations as $violation) {
-            /** @var ConstraintViolationInterface $violation */
-            throw new \InvalidArgumentException('GeoPosition has invalid format: ' . $violation->getPropertyPath() . ' => ' . $violation->getMessage());
-        }
+        ];
     }
 }

@@ -6,8 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Volante\SkyBukkit\Monitor\Src\Controller\Controller;
+use Volante\SkyBukkit\Monitor\Src\FlightStatus\FlightStatusRepository;
 use Volante\SkyBukkit\Monitor\Src\FlightStatus\GeoPosition\GeoPositionFactory;
 use Volante\SkyBukkit\Monitor\Src\FlightStatus\GeoPosition\GeoPositionRepository;
+use Volante\SkyBukkit\Monitor\Src\FlightStatus\NetworkStatus\NetworkStatusFactory;
 
 /**
  * Class FlightStatusController
@@ -16,17 +18,17 @@ use Volante\SkyBukkit\Monitor\Src\FlightStatus\GeoPosition\GeoPositionRepository
 class FlightStatusController extends Controller
 {
     /**
-     * @var GeoPositionRepository
+     * @var FlightStatusRepository
      */
-    private $geoPositionRepository;
+    private $flightStatusRepository;
 
     /**
      * FlightStatusController constructor.
-     * @param GeoPositionRepository $geoPositionRepository
+     * @param FlightStatusRepository $flightStatusRepository
      */
-    public function __construct(GeoPositionRepository $geoPositionRepository = null)
+    public function __construct(FlightStatusRepository $flightStatusRepository = null)
     {
-        $this->geoPositionRepository = $geoPositionRepository ?: new GeoPositionRepository();
+        $this->flightStatusRepository = $flightStatusRepository ?: new FlightStatusRepository();
     }
 
     /**
@@ -38,11 +40,7 @@ class FlightStatusController extends Controller
         return $this->protectedExecution(function () use ($request) {
             $this->authenticate($request);
             $data = $this->decodeJson($request);
-
-            if (isset($data['geoPosition']))  {
-                $geoPosition = GeoPositionFactory::createFromRequest($data['geoPosition']);
-                $this->geoPositionRepository->save($geoPosition);
-            }
+            $this->flightStatusRepository->handle($data);
         });
     }
 
