@@ -39,10 +39,10 @@ class FlightStatusController extends Controller
             $this->authenticate($request);
             $data = $this->decodeJson($request);
 
-            Assertion::keyExists($data, 'geoPosition', 'FlightStatus needs to contain a geo position');
-
-            $geoPosition = GeoPositionFactory::createFromRequest($data['geoPosition']);
-            $this->geoPositionRepository->save($geoPosition);
+            if (isset($data['geoPosition']))  {
+                $geoPosition = GeoPositionFactory::createFromRequest($data['geoPosition']);
+                $this->geoPositionRepository->save($geoPosition);
+            }
         });
     }
 
