@@ -1,4 +1,4 @@
-function MapController()
+function MapWidget()
 {
     this.mapOptions = {
         zoom: 14,
@@ -12,12 +12,49 @@ function MapController()
     this.polygon = undefined;
 }
 
+MapWidget.prototype.init = function () {
+    this.render('GeoPositionMap');
+    this.refresh(function () {
+        $('#GeoPositionMap').removeClass('loading');
+    })
+};
+
+MapWidget.prototype.refresh = function (callback) {
+    app.GeoPositionController.getAllPositions(function (positions) {
+        if (positions.length > 0) {
+            app.MapWidget.setCurrentPosition(positions.pop());
+        }
+
+        if (positions.length > 0) {
+            app.MapWidget.setPreviousPositions(positions);
+        }
+
+        if (callback != undefined) {
+            callback();
+        }
+    });
+};
+
+MapWidget.prototype.reset = function (triggerButton) {
+    if (triggerButton != undefined) {
+        triggerButton = $(triggerButton);
+        triggerButton.addClass('loading');
+    }
+
+    app.GeoPositionController.deleteAllGeoPositions(function () {
+        app.MapWidget.resetMarker();
+        if (triggerButton != undefined) {
+            triggerButton.removeClass('loading');
+        }
+    });
+};
+
 /**
  * Sets the current position
  *
  * @param {GeoPosition} currentPosition
  */
-MapController.prototype.setCurrentPosition = function (currentPosition) {
+MapWidget.prototype.setCurrentPosition = function (currentPosition) {
     if (this.currentPositionMarker != undefined) {
         this.currentPositionMarker.setMap(null);
     }
@@ -35,7 +72,7 @@ MapController.prototype.setCurrentPosition = function (currentPosition) {
     this.currentPositionMarker = marker;
 };
 
-MapController.prototype.setPreviousPositions = function (positions)
+MapWidget.prototype.setPreviousPositions = function (positions)
 {
     var cords = [];
 
@@ -58,13 +95,13 @@ MapController.prototype.setPreviousPositions = function (positions)
     this.polygon = polygon;
 };
 
-MapController.prototype.render = function (elementId)
+MapWidget.prototype.render = function (elementId)
 {
     var mapElement = document.getElementById(elementId);
     this.map = new google.maps.Map(mapElement, this.mapOptions);
 };
 
-MapController.prototype.resetMarker = function () {
+MapWidget.prototype.resetMarker = function () {
     if (this.polygon != undefined) {
         this.polygon.setMap(null);
         this.polygon = undefined;

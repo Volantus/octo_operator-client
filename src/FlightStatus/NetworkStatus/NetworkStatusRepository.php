@@ -18,4 +18,10 @@ class NetworkStatusRepository extends RedisRepository
         $cacheItem->set($networkStatus);
         $this->cache->save($cacheItem);
     }
+
+    public function get()
+    {
+        $cacheItem = $this->cache->getItem('networkStatus');
+        return $cacheItem->isHit() ? $cacheItem->get() : new NetworkStatus(0, null);
+    }
 }

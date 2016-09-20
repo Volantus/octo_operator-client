@@ -6,3 +6,5 @@ services:
     class: Volante\SkyBukkit\Monitor\Src\Controller\API\FlightStatusController
   controller.api.geo-positions-controller:
     class: Volante\SkyBukkit\Monitor\Src\Controller\API\GeoPositionsController
+  controller.api.network-status:
+    class: Volante\SkyBukkit\Monitor\Src\Controller\API\NetworkStatusController

@@ -31,7 +31,7 @@ class NetworkStatus implements \JsonSerializable
     /**
      * @return string
      */
-    public function getIpAddress(): string
+    public function getIpAddress()
     {
         return $this->ipAddress;
     }

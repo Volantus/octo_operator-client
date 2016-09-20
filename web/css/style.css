@@ -7,12 +7,23 @@ body {
     padding-top: 15px;
 }
 
+.inverted.segment.loading:before {
+    background: rgba(82, 82, 82, 0.57);
+}
+
 #GeoPositionMap {
     height: 25em;
 }
 
-#geoPositionResetButton {
+#geoPositionResetButton, #refreshNetworkStatus {
     float: right;
     margin-top: -29px;
     margin-right: -10px;
+}
+
+#refreshNetworkStatus {
+    width: 40px;
+    height: 36px;
+    padding-left: 7px;
+    padding-top: 6px;
 }

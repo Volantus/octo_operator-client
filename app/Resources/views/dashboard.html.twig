@@ -26,7 +26,7 @@
                 <div class="content">
                     Geo position
                 </div>
-                <button class="ui grey button" id="geoPositionResetButton" onclick="app.DashboardController.resetGeoPositions()">
+                <button class="ui grey button" id="geoPositionResetButton" onclick="app.MapWidget.reset(this)">
                     Reset data
                 </button>
             </h4>
@@ -34,40 +34,29 @@
         </div>
         <div class="four wide column">
             <h4 class="ui top inverted attached header">
-                <i class="map icon"></i>
+                <i class="feed icon"></i>
                 <div class="content">
-                    Geo position
+                    Network status
                 </div>
+                <button class="ui grey icon button" id="refreshNetworkStatus" onclick="app.NetworkStatusWidget.refresh(this)">
+                    <i class="refresh icon"></i>
+                </button>
             </h4>
-            <div class="ui attached inverted segment">
-                <p><br><br></p>
-                <p><br><br></p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="eight wide column">
-            <h4 class="ui top inverted attached header">
-                <i class="map icon"></i>
-                <div class="content">
-                    Geo position
+            <div class="ui attached inverted segment" id="NetworkStatusWidget">
+                <div class="ui inverted relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">IP Adresse</div>
+                            <div class="ipAddress">{{ networkStatus.ipAddress ?: 'Unknown' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Websocket port</div>
+                            <div class="port">{{ networkStatus.webSocketPort ?: 'Unknown' }}</div>
+                        </div>
+                    </div>
                 </div>
-            </h4>
-            <div class="ui attached inverted segment">
-                <p><br><br></p>
-                <p><br><br></p>
-            </div>
-        </div>
-        <div class="four wide column">
-            <h4 class="ui top inverted attached header">
-                <i class="map icon"></i>
-                <div class="content">
-                    Geo position
-                </div>
-            </h4>
-            <div class="ui attached inverted segment">
-                <p><br><br></p>
-                <p><br><br></p>
             </div>
         </div>
     </div>

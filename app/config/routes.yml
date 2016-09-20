@@ -16,3 +16,8 @@ GeoPositionsDelete:
     path: /api/geo-positions
     defaults: { _controller: controller.api.geo-positions-controller:deleteAll }
     methods: [DELETE]
+
+NetworkStatusRead:
+    path: /api/network-status
+    defaults: { _controller: controller.api.network-status:getStatus }
+    methods: [GET]
