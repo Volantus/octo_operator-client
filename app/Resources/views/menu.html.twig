@@ -1,0 +1,18 @@
+<div class="ui left demo vertical inverted visible sidebar labeled icon menu" id="sideMenu">
+    <a class="item {{ activeItem == 'dashboard' ? 'active' : '' }}" onclick="app.switchPage(this, '/');">
+        <i class="dashboard icon"></i>
+        Dashboard
+    </a>
+    <a class="item {{ activeItem == 'geoPosition' ? 'active' : '' }}">
+        <i class="map icon"></i>
+        Geo Position
+    </a>
+    <a class="loading item {{ activeItem == 'directControl' ? 'active' : '' }}" onclick="app.switchPage(this, '/direct-control');">
+        <i class="game icon"></i>
+        Control
+    </a>
+    <a class="item {{ activeItem == 'configure' ? 'active' : '' }}">
+        <i class="settings icon"></i>
+        Configure
+    </a>
+</div>

@@ -2,6 +2,10 @@ dashboard:
     path: /
     defaults: { _controller: controller.ui.dashboard:show }
 
+directControl:
+    path: /direct-control
+    defaults: { _controller: controller.ui.direct-control:show }
+
 flightStatusCreation:
     path: /api/flight-status
     defaults: { _controller: controller.api.flight-status-controller:create }

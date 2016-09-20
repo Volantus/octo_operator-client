@@ -39,6 +39,6 @@ class DashboardController extends Controller
     public function show()
     {
         $networkStatus = $this->networkStatusRepository->get();
-        return $this->TemplateEngine->renderResponse('dashboard.html.twig', ['networkStatus' => $networkStatus]);
+        return $this->TemplateEngine->renderResponse('dashboard.html.twig', ['activeItem' => 'dashboard', 'networkStatus' => $networkStatus]);
     }
 }

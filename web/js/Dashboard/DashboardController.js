@@ -10,7 +10,7 @@ DashboardController.prototype.init = function ()
 
     setInterval(function () {
         app.DashboardController.updateLastUpdateHeader();
-    }, 200);
+    }, 500);
 
     setInterval(function () {
         app.MapWidget.refresh(function () {
