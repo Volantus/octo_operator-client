@@ -14,5 +14,7 @@
 {% endblock %}
 
 {% block grid %}
-
+    <div class="row">
+        {% include 'widgets/network-status.html.twig' with {'networkStatus': networkStatus} %}
+    </div>
 {% endblock %}
