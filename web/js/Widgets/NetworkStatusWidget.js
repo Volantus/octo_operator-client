@@ -1,11 +1,17 @@
 function NetworkStatusWidget()
 {
-
+    this.segment = undefined;
 }
+
+NetworkStatusWidget.prototype.init = function ()
+{
+    this.segment = $('#NetworkStatusWidget');
+};
 
 NetworkStatusWidget.prototype.refresh = function (triggerButton) {
     triggerButton = $(triggerButton);
     var segment = $('#NetworkStatusWidget');
+    this.segment = segment;
     triggerButton.addClass('loading');
     segment.addClass('loading');
 
@@ -16,4 +22,9 @@ NetworkStatusWidget.prototype.refresh = function (triggerButton) {
         triggerButton.removeClass('loading');
         segment.removeClass('loading');
     })
+};
+
+NetworkStatusWidget.prototype.setConnectionStatus = function (text, color)
+{
+    this.segment.find('.status').html('<div style="color: ' + color + '">' + text + '</div>');
 };
