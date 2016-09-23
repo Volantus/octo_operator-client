@@ -11,7 +11,7 @@ DirectControlController.prototype.init = function ()
     app.NetworkStatusWidget.setConnectionStatus('Connecting...', '#54c8ff');
 
     var connectionStatus = $('#connectionStatus');
-    this.connection = new WebSocket('ws://html5rocks.websocket.org/echo');
+    this.connection = new WebSocket('wss://html5rocks.websocket.org/echo');
 
     this.connection.onopen = function () {
         connectionStatus.html('Waiting for motor status ...');
