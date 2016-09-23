@@ -1,6 +1,8 @@
 function Application()
 {
-    this.DashboardController   = new DashboardController();
+    this.DashboardController     = new DashboardController();
+    this.DirectControlController = new DirectControlController();
+
     this.GeoPositionController = new GeoPositionController();
     this.NetworkStatusController = new NetworkStatusController();
 
