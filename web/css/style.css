@@ -28,6 +28,11 @@ body {
     padding-top: 6px;
 }
 
+#directControlWidget {
+    padding-left: 13px;
+    padding-top: 13px;
+}
+
 .segment.geo-position {
     padding: 0;
 }

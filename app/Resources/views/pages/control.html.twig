@@ -10,7 +10,7 @@
 
 {% block header %}
     <h1 class="ui top dividing inverted dark blue header">
-        <i class="dashboard icon"></i>
+        <i class="game icon"></i>
         <div class="content">
             Direct control
             <div class="green sub header" id="connectionStatus">Connecting ...</div>
@@ -20,6 +20,11 @@
 
 {% block grid %}
     <div class="row">
+        {% include 'widgets/direct-control.html.twig' %}
         {% include 'widgets/network-status.html.twig' with {'networkStatus': networkStatus} %}
+    </div>
+    <div class="row">
+        {% include 'widgets/motor-status.html.twig' %}
+        {% include 'widgets/control-requests-list.html.twig' %}
     </div>
 {% endblock %}
