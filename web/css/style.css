@@ -27,3 +27,7 @@ body {
     padding-left: 7px;
     padding-top: 6px;
 }
+
+.segment.geo-position {
+    padding: 0;
+}

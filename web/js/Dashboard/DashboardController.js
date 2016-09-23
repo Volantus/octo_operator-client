@@ -2,22 +2,34 @@ function DashboardController()
 {
     this.lastUpdateHeader = $('#dashBoardLastUpdateHeader');
     this.lastUpdate = new Date();
+
+    this.lastUpdateTimer = undefined;
+    this.refreshTimer = undefined;
 }
 
 DashboardController.prototype.init = function ()
 {
+    app.activeController = this;
     app.MapWidget.init();
 
-    setInterval(function () {
+    this.lastUpdateTimer = setInterval(function () {
         app.DashboardController.updateLastUpdateHeader();
     }, 500);
 
-    setInterval(function () {
+    this.refreshTimer = setInterval(function () {
         app.MapWidget.refresh(function () {
             app.DashboardController.lastUpdate = new Date();
             app.DashboardController.lastUpdateHeader.html('Last update: ' + 0 + ' seconds ago');
         });
     }, 3000);
+};
+
+DashboardController.prototype.tearDown = function ()
+{
+    clearInterval(this.lastUpdateTimer);
+    clearInterval(this.refreshTimer);
+
+    app.MapWidget = new MapWidget();
 };
 
 DashboardController.prototype.updateLastUpdateHeader = function ()

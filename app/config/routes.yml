@@ -1,5 +1,9 @@
-dashboard:
+init:
     path: /
+    defaults: { _controller: controller.ui.dashboard:init }
+
+dashboard:
+    path: /dashboard
     defaults: { _controller: controller.ui.dashboard:show }
 
 directControl:

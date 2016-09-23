@@ -18,7 +18,7 @@
     <script src="/js/GeoPosition/GeoPosition.js"></script>
     <script src="/js/NetworkStatus/NetworkStatusController.js"></script>
     <script src="/js/NetworkStatus/NetworkStatus.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNZevL41DOyoY-TnURwUY3Tiry_NWhSko"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABKcbUczdF47MZWubtdcZncb2y5kwXKas"></script>
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -33,18 +33,14 @@
         var app;
         $(document).ready(function () {
             app = new Application();
+            app.switchPage(undefined, '/dashboard');
         });
 
         $(document).bind('touchmove', function(e) {e.preventDefault();});
     </script>
-    {{ include('menu.html.twig', {activeItem: activeItem}) }}
+    {{ include('base/menu.html.twig', {activeItem: activeItem}) }}
     <div class="pusher">
         <div id="content">
-            {% block header %}{% endblock %}
-            <div class="ui two column grid">
-                {% block grid %}{% endblock %}
-            </div>
-            {% block jsScript %}{% endblock %}
         </div>
     </div>
 </body>

@@ -6,18 +6,31 @@ function Application()
 
     this.MapWidget = new MapWidget();
     this.NetworkStatusWidget = new NetworkStatusWidget();
+
+    this.activeController = undefined;
 }
 
 Application.prototype.switchPage = function (button, url)
 {
-    Pace.start();
-    button = $(button);
-    button.find('.icon').addClass('loading');
-    $('#sideMenu').find('.item').removeClass('active');
-    button.addClass('active');
+    if (this.activeController != undefined) {
+        this.activeController.tearDown();
+        this.activeController = undefined;
+    }
 
-    $('#content').load(url + ' #content', function () {
-        button.find('.icon').removeClass('loading');
+    Pace.start();
+
+    if (button != undefined) {
+        button = $(button);
+        button.find('.icon').addClass('loading');
+        $('#sideMenu').find('.item').removeClass('active');
+        button.addClass('active');
+    }
+
+    $('#content').load(url, function () {
+        if (button != undefined) {
+            button.find('.icon').removeClass('loading');
+        }
+
         Pace.stop();
     });
 };

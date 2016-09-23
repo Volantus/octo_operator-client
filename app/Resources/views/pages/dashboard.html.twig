@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'pages/base.html.twig' %}
 
 {% block jsScript %}
     <script>
@@ -30,7 +30,7 @@
                     Reset data
                 </button>
             </h4>
-            <div class="ui attached loading inverted dark blue segment" id="GeoPositionMap"></div>
+            <div class="ui attached segment geo-position inverted"><div id="GeoPositionMap"></div></div>
         </div>
         <div class="four wide column">
             <h4 class="ui top inverted attached header">

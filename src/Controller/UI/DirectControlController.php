@@ -30,6 +30,6 @@ class DirectControlController extends Controller
      */
     public function show()
     {
-        return $this->TemplateEngine->renderResponse('control.html.twig', ['activeItem' => 'directControl']);
+        return $this->TemplateEngine->renderResponse('pages/control.html.twig', ['activeItem' => 'directControl']);
     }
 }

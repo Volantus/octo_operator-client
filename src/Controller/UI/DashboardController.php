@@ -36,9 +36,17 @@ class DashboardController extends Controller
     /**
      * @return Response
      */
+    public function init()
+    {
+        return $this->TemplateEngine->renderResponse('base/init.html.twig', ['activeItem' => 'dashboard']);
+    }
+
+    /**
+     * @return Response
+     */
     public function show()
     {
         $networkStatus = $this->networkStatusRepository->get();
-        return $this->TemplateEngine->renderResponse('dashboard.html.twig', ['activeItem' => 'dashboard', 'networkStatus' => $networkStatus]);
+        return $this->TemplateEngine->renderResponse('pages/dashboard.html.twig', ['networkStatus' => $networkStatus]);
     }
 }
