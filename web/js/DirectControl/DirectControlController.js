@@ -13,7 +13,8 @@ DirectControlController.prototype.init = function ()
     var connectionStatus = $('#connectionStatus');
 
     var networkStatus = app.NetworkStatusController.get(function (networkStatus) {
-        app.DirectControlController.connection = new WebSocket('wss://[' + networkStatus.ipAddress + ']:' + networkStatus.port);
+        var ipAddress = networkStatus.ipAddress.indexOf(':') !== -1 ? ('[' + networkStatus.ipAddress + ']') : networkStatus.ipAddress;
+        app.DirectControlController.connection = new WebSocket('wss://' + ipAddress + ':' + networkStatus.port);
 
         app.DirectControlController.connection.onopen = function () {
             connectionStatus.html('Waiting for motor status ...');
