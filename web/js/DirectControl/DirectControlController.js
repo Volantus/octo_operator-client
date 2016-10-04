@@ -1,6 +1,19 @@
 function DirectControlController()
 {
-    this.connection = undefined;
+    /**
+     * @type {WebSocket}
+     */
+    this.connection             = undefined;
+
+    /**
+     * @type {IncomingMessageHandler}
+     */
+    this.incomingMessageHandler = undefined;
+
+    /**
+     * @type {Object}
+     */
+    this.connectionStatus = undefined;
 }
 
 DirectControlController.prototype.init = function ()
@@ -10,31 +23,50 @@ DirectControlController.prototype.init = function ()
     app.NetworkStatusWidget.init();
     app.NetworkStatusWidget.setConnectionStatus('Connecting...', '#54c8ff');
 
-    var connectionStatus = $('#connectionStatus');
+    this.connectionStatus       = $('#connectionStatus');
+    this.incomingMessageHandler = new IncomingMessageHandler();
 
-    var networkStatus = app.NetworkStatusController.get(function (networkStatus) {
+    app.NetworkStatusController.get(function (networkStatus) {
         var ipAddress = networkStatus.ipAddress.indexOf(':') !== -1 ? ('[' + networkStatus.ipAddress + ']') : networkStatus.ipAddress;
-        app.DirectControlController.connection = new WebSocket('wss://' + ipAddress + ':' + networkStatus.port);
-
-        app.DirectControlController.connection.onopen = function () {
-            connectionStatus.html('Waiting for motor status ...');
-            app.NetworkStatusWidget.setConnectionStatus('Connected successfully', 'greenyellow');
-            app.DirectControlController.connection.send('Ping');
-        };
-
-        app.DirectControlController.connection.onerror = function (error) {
-            connectionStatus.html('Connection failed!');
-            app.NetworkStatusWidget.setConnectionStatus('Connection failed', 'red');
-            console.log('WebSocket Error ' + error);
-        };
-
-        app.DirectControlController.connection.onmessage = function (e) {
-            console.log('Server: ' + e.data);
-        };
+        app.DirectControlController.createWebSocket(ipAddress, networkStatus.port);
     });
+};
+
+/**
+ * @param {string} ipAddress
+ * @param {int} port
+ */
+DirectControlController.prototype.createWebSocket = function(ipAddress, port)
+{
+    var socket           = new WebSocket('wss://' + ipAddress + ':' + port);
+    var connectionStatus = this.connectionStatus;
+    var messageHandler   = this.incomingMessageHandler;
+
+    socket.onopen = function () {
+        connectionStatus.html('Waiting for motor status ...');
+        app.NetworkStatusWidget.setConnectionStatus('Connected successfully', 'greenyellow');
+    };
+
+    socket.onerror = function (error) {
+        connectionStatus.html('Connection failed!');
+        app.NetworkStatusWidget.setConnectionStatus('Connection failed', 'red');
+        console.log('WebSocket Error ' + error);
+    };
+
+    socket.onmessage = function (e) {
+        messageHandler.handle(JSON.parse(e.data));
+    };
+
+    this.connection = socket;
 };
 
 DirectControlController.prototype.tearDown = function () {
     app.NetworkStatusWidget = new NetworkStatusWidget();
-    this.connection.close();
+
+    if (this.connection != undefined) {
+        this.connection.close();
+    }
+
+    this.incomingMessageHandler = undefined;
+    this.connectionStatus = undefined;
 };

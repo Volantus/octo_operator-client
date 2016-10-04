@@ -1,18 +1,55 @@
-function Application()
+function app()
 {
-    this.DashboardController     = new DashboardController();
-    this.DirectControlController = new DirectControlController();
+    /**
+     * @type {DashboardController}
+     */
+    this.DashboardController     = undefined;
+    /**
+     * @type {DirectControlController}
+     */
+    this.DirectControlController = undefined;
 
-    this.GeoPositionController = new GeoPositionController();
-    this.NetworkStatusController = new NetworkStatusController();
+    /**
+     * @type {GeoPositionController}
+     */
+    this.GeoPositionController   = undefined;
+    /**
+     * @type {NetworkStatusController}
+     */
+    this.NetworkStatusController = undefined;
+    /**
+     * @type {MotorStatusController}
+     */
+    this.MotorStatusController   = undefined;
 
-    this.MapWidget = new MapWidget();
+    /**
+     * @type {MapWidget}
+     */
+    this.MapWidget           = new MapWidget();
+
+    /**
+     * @type {NetworkStatusWidget}
+     */
     this.NetworkStatusWidget = new NetworkStatusWidget();
 
     this.activeController = undefined;
 }
 
-Application.prototype.switchPage = function (button, url)
+app.start = function () {
+    this.DashboardController     = new DashboardController();
+    this.DirectControlController = new DirectControlController();
+
+    this.GeoPositionController   = new GeoPositionController();
+    this.NetworkStatusController = new NetworkStatusController();
+    this.MotorStatusController   = new MotorStatusController();
+
+    this.MapWidget           = new MapWidget();
+    this.NetworkStatusWidget = new NetworkStatusWidget();
+
+    this.activeController = undefined;
+};
+
+app.switchPage = function (button, url)
 {
     if (this.activeController != undefined) {
         this.activeController.tearDown();
