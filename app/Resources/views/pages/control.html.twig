@@ -20,11 +20,13 @@
 
 {% block grid %}
     <div class="row">
-        {% include 'widgets/direct-control.html.twig' %}
-        {% include 'widgets/network-status.html.twig' with {'networkStatus': networkStatus} %}
-    </div>
-    <div class="row">
-        {% include 'widgets/motor-status.html.twig' %}
-        {% include 'widgets/control-requests-list.html.twig' %}
+        <div class="four wide column">
+            {% include 'widgets/direct-control.html.twig' %}
+            <br>
+            {% include 'widgets/network-status.html.twig' with {'networkStatus': networkStatus} %}
+        </div>
+        <div class="column">
+            {% include 'widgets/motor-status-current-structure.html.twig' %}v
+        </div>
     </div>
 {% endblock %}
