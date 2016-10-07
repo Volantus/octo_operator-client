@@ -1,5 +1,7 @@
 function MapWidget()
 {
+    AbstractWidget.call(this);
+
     this.mapOptions = {
         zoom: 14,
         disableDefaultUI: true,
@@ -9,107 +11,121 @@ function MapWidget()
     this.map                   = undefined;
     this.currentPositionMarker = undefined;
     this.polygon               = undefined;
-}
 
-MapWidget.prototype.init = function ()
-{
-    console.log('[Map Widget] Initialisation');
-    this.render('GeoPositionMap');
-    this.refresh(function () {
-        $('#GeoPositionMap').removeClass('loading');
-    })
-};
+    this.init = function ()
+    {
+        console.log('[Map Widget] Initialisation');
+        this.render('GeoPositionMap');
+        this.refresh(function () {
+            $('#GeoPositionMap').removeClass('loading');
+        })
+    };
 
-MapWidget.prototype.refresh = function (callback) {
-    app.GeoPositionController.getAllPositions(function (positions) {
-        if (positions.length > 0) {
-            app.MapWidget.setCurrentPosition(positions.pop());
-        }
+    /**
+     * @param {function} callback
+     */
+    this.refresh = function (callback) {
+        app.GeoPositionRepository.getAllPositions(function (positions) {
+            if (positions.length > 0) {
+                app.MapWidget.setCurrentPosition(positions.pop());
+            }
 
-        if (positions.length > 0) {
-            app.MapWidget.setPreviousPositions(positions);
-        }
+            if (positions.length > 0) {
+                app.MapWidget.setPreviousPositions(positions);
+            }
 
-        if (callback != undefined) {
-            callback();
-        }
-    });
-};
+            if (callback != undefined) {
+                callback();
+            }
+        });
+    };
 
-MapWidget.prototype.reset = function (triggerButton) {
-    if (triggerButton != undefined) {
-        triggerButton = $(triggerButton);
-        triggerButton.addClass('loading');
-    }
-
-    app.GeoPositionController.deleteAllGeoPositions(function () {
-        app.MapWidget.resetMarker();
+    /**
+     * @param {Object} triggerButton
+     */
+    this.reset = function (triggerButton) {
         if (triggerButton != undefined) {
-            triggerButton.removeClass('loading');
+            triggerButton = $(triggerButton);
+            triggerButton.addClass('loading');
         }
-    });
-};
 
-/**
- * Sets the current position
- *
- * @param {GeoPosition} currentPosition
- */
-MapWidget.prototype.setCurrentPosition = function (currentPosition) {
-    if (this.currentPositionMarker != undefined) {
-        this.currentPositionMarker.setMap(null);
-    }
+        app.GeoPositionRepository.deleteAllGeoPositions(function () {
+            app.MapWidget.resetMarker();
+            if (triggerButton != undefined) {
+                triggerButton.removeClass('loading');
+            }
+        });
+    };
 
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(currentPosition.latitude, currentPosition.longitude),
-        map: this.map,
-        title: 'Current position'
-    });
+    /**
+     * Sets the current position
+     *
+     * @param {GeoPosition} currentPosition
+     */
+    this.setCurrentPosition = function (currentPosition) {
+        if (this.currentPositionMarker != undefined) {
+            this.currentPositionMarker.setMap(null);
+        }
 
-    if (this.currentPositionMarker == undefined) {
-        this.map.setCenter(marker.getPosition());
-    }
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(currentPosition.latitude, currentPosition.longitude),
+            map: this.map,
+            title: 'Current position'
+        });
 
-    this.currentPositionMarker = marker;
-};
+        if (this.currentPositionMarker == undefined) {
+            this.map.setCenter(marker.getPosition());
+        }
 
-MapWidget.prototype.setPreviousPositions = function (positions)
-{
-    var cords = [];
+        this.currentPositionMarker = marker;
+    };
 
-    $.each(positions, function (key, position) {
-        cords.push({lat: position.latitude, lng: position.longitude});
-    });
+    /**
+     * Sets the current position
+     *
+     * @param {GeoPosition[]} positions
+     */
+    this.setPreviousPositions = function (positions)
+    {
+        var cords = [];
 
-    var polygon = new google.maps.Polygon({
-        paths: cords,
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2
-    });
-    polygon.setMap(this.map);
+        $.each(positions, function (key, position) {
+            cords.push({lat: position.latitude, lng: position.longitude});
+        });
 
-    if (this.polygon != undefined) {
-        this.polygon.setMap(null);
-    }
+        var polygon = new google.maps.Polygon({
+            paths: cords,
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2
+        });
+        polygon.setMap(this.map);
 
-    this.polygon = polygon;
-};
+        if (this.polygon != undefined) {
+            this.polygon.setMap(null);
+        }
 
-MapWidget.prototype.render = function (elementId)
-{
-    var mapElement = document.getElementById(elementId);
-    this.map = new google.maps.Map(mapElement, this.mapOptions);
-};
+        this.polygon = polygon;
+    };
 
-MapWidget.prototype.resetMarker = function () {
-    if (this.polygon != undefined) {
-        this.polygon.setMap(null);
-        this.polygon = undefined;
-    }
+    /**
+     * @param {string} elementId
+     */
+    this.render = function (elementId)
+    {
+        var mapElement = document.getElementById(elementId);
+        this.map = new google.maps.Map(mapElement, this.mapOptions);
+    };
 
-    if (this.currentPositionMarker != undefined) {
-        this.currentPositionMarker.setMap(null);
-        this.currentPositionMarker = undefined;
-    }
-};
+    this.resetMarker = function () {
+        if (this.polygon != undefined) {
+            this.polygon.setMap(null);
+            this.polygon = undefined;
+        }
+
+        if (this.currentPositionMarker != undefined) {
+            this.currentPositionMarker.setMap(null);
+            this.currentPositionMarker = undefined;
+        }
+    };
+}

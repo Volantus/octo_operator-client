@@ -6,7 +6,7 @@ use Volante\SkyBukkit\Monitor\Src\Controller\Controller;
 use Volante\SkyBukkit\Monitor\Src\FlightStatus\NetworkStatus\NetworkStatusRepository;
 
 /**
- * Class NetworkStatusController
+ * Class NetworkStatusRepository
  * @package Volante\SkyBukkit\Monitor\Src\Controller\API
  */
 class NetworkStatusController extends Controller
@@ -17,7 +17,7 @@ class NetworkStatusController extends Controller
     private $networkStatusRepository;
 
     /**
-     * NetworkStatusController constructor.
+     * NetworkStatusRepository constructor.
      * @param NetworkStatusRepository $networkStatusRepository
      */
     public function __construct(NetworkStatusRepository $networkStatusRepository = null)

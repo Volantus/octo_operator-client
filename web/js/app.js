@@ -4,23 +4,26 @@ function app()
      * @type {DashboardController}
      */
     this.DashboardController     = undefined;
+
     /**
      * @type {DirectControlController}
      */
     this.DirectControlController = undefined;
 
     /**
-     * @type {GeoPositionController}
+     * @type {GeoPositionRepository}
      */
-    this.GeoPositionController   = undefined;
+    this.GeoPositionRepository   = undefined;
+
     /**
-     * @type {NetworkStatusController}
+     * @type {NetworkStatusRepository}
      */
-    this.NetworkStatusController = undefined;
+    this.NetworkStatusRepository = undefined;
+
     /**
-     * @type {MotorStatusController}
+     * @type {MotorStatusRepository}
      */
-    this.MotorStatusController   = undefined;
+    this.MotorStatusRepository   = undefined;
 
     /**
      * @type {MapWidget}
@@ -39,9 +42,9 @@ app.start = function () {
     this.DashboardController     = new DashboardController();
     this.DirectControlController = new DirectControlController();
 
-    this.GeoPositionController   = new GeoPositionController();
-    this.NetworkStatusController = new NetworkStatusController();
-    this.MotorStatusController   = new MotorStatusController();
+    this.GeoPositionRepository   = new GeoPositionRepository();
+    this.NetworkStatusRepository = new NetworkStatusRepository();
+    this.MotorStatusRepository   = new MotorStatusRepository();
 
     this.MapWidget           = new MapWidget();
     this.NetworkStatusWidget = new NetworkStatusWidget();
