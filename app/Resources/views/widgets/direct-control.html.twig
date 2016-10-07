@@ -6,28 +6,67 @@
         </div>
     </h4>
     <div class="ui attached segment geo-position inverted" id="directControlWidget">
-        <h4 class="ui horizontal divider header">
-            Start / Stop
-        </h4>
-        <button class="big inverted green ui button">
-            <i class="play icon"></i>
-            Start motors
-        </button>
-        <button class="big inverted disabled red ui button">
-            <i class="stop icon"></i>
-            Stop motors
-        </button>
+        <div class="ui two column grid">
+            <div class="ui column">
+                <h4 class="ui horizontal inverted divider header">
+                    Switch Horizontal
+                </h4>
+                <button class="large large olive ui labeled icon fluid button">
+                    <i class="play icon"></i>
+                    Start motors
+                </button>
+            </div>
+            <div class="ui column">
+                <h4 class="ui horizontal inverted divider header">
+                    Switch Vertical
+                </h4>
+                <button class="large red labeled icon ui fluid button">
+                    <i class="stop icon"></i>
+                    Stop motors
+                </button>
+            </div>
+        </div>
         <h4 class="ui horizontal divider header">
             Horizontal motors
         </h4>
-        <button class="big ui grey button">
-            <i class="arrow up icon"></i>
-            All motors +2%
-        </button>
-        <button class="big  ui grey button">
-            <i class="arrow down icon"></i>
-            All motors -2%
-        </button>
-        <br><br>
+        <div class="ui two column grid">
+            <div class="ui column">
+                <div class="ui large fluid grey labeled icon button">
+                    <i class="arrow up icon"></i>
+                    Accelerate
+                </div><br>
+                <div class="ui large fluid grey labeled icon button">
+                    <i class="arrow down icon"></i>
+                    Decelerate
+                </div>
+            </div>
+            <div class="ui column">
+                <div class="ui large grey fluid labeled icon button">
+                    <i class="share icon"></i>
+                    Right spin
+                </div><br>
+                <div class="ui large grey fluid labeled icon button">
+                    <i class="reply icon"></i>
+                    Left spin
+                </div>
+            </div>
+        </div>
+        <h4 class="ui horizontal divider header">
+            Vertical motors
+        </h4>
+        <div class="ui two column grid">
+            <div class="ui column">
+                <div class="ui large fluid grey labeled icon button">
+                    <i class="add icon"></i>
+                    Accelerate
+                </div><br>
+            </div>
+            <div class="ui column">
+                <div class="ui large fluid grey labeled icon button">
+                    <i class="minus icon"></i>
+                    Decelerate
+                </div>
+            </div>
+        </div>
     </div>
 </div>

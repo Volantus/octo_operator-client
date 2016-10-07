@@ -36,3 +36,21 @@ body {
 .segment.geo-position {
     padding: 0;
 }
+
+#directControlWidget .column {
+    padding-left: 9px;
+    padding-right: 16px;
+}
+
+#copterStructureWidget img {
+    margin: 8px;
+    height: 218px;
+}
+
+#copterStructureWidget .segment {
+    width: 239px;
+}
+
+#copterStructureWidget .header {
+    width: 239px;
+}
