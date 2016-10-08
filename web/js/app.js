@@ -28,13 +28,21 @@ function app()
     /**
      * @type {MapWidget}
      */
-    this.MapWidget           = new MapWidget();
+    this.MapWidget           = undefined;
 
     /**
      * @type {NetworkStatusWidget}
      */
-    this.NetworkStatusWidget = new NetworkStatusWidget();
+    this.NetworkStatusWidget = undefined;
 
+    /**
+     * @type {MotorStatusHistoryWidget}
+     */
+    this.MotorStatusHistoryWidget = undefined;
+
+    /**
+     * @type {AbstractController}
+     */
     this.activeController = undefined;
 }
 
@@ -46,8 +54,9 @@ app.start = function () {
     this.NetworkStatusRepository = new NetworkStatusRepository();
     this.MotorStatusRepository   = new MotorStatusRepository();
 
-    this.MapWidget           = new MapWidget();
-    this.NetworkStatusWidget = new NetworkStatusWidget();
+    this.MapWidget                = new MapWidget();
+    this.NetworkStatusWidget      = new NetworkStatusWidget();
+    this.MotorStatusHistoryWidget = new MotorStatusHistoryWidget();
 
     this.activeController = undefined;
 };

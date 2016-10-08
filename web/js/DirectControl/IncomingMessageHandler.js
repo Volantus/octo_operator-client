@@ -17,9 +17,6 @@ function IncomingMessageHandler()
     this.handleMotorStatus = function (message)
     {
         var collection = MotorStatusCollectionFactory.createFromMessage(message);
-
-        console.log(collection);
-
         app.MotorStatusRepository.addStatusCollection(collection);
     };
 }

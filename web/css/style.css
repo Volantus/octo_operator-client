@@ -54,3 +54,8 @@ body {
 #copterStructureWidget .header {
     width: 239px;
 }
+
+#motorStatusHistoryChart {
+    height: 269px;
+    width: 100%;
+}

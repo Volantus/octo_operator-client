@@ -1,6 +1,7 @@
 function DirectControlController()
 {
     AbstractController.call(this);
+    MotorStatusListener.call(this);
 
     /**
      * @type {WebSocket}
@@ -20,6 +21,7 @@ function DirectControlController()
     this.init = function ()
     {
         app.activeController = this;
+        app.MotorStatusRepository.addListener(this);
 
         app.NetworkStatusWidget.init();
         app.NetworkStatusWidget.setConnectionStatus('Connecting...', '#54c8ff');
@@ -31,6 +33,8 @@ function DirectControlController()
             var ipAddress = networkStatus.ipAddress.indexOf(':') !== -1 ? ('[' + networkStatus.ipAddress + ']') : networkStatus.ipAddress;
             app.DirectControlController.createWebSocket(ipAddress, networkStatus.port);
         });
+
+        app.MotorStatusHistoryWidget.init();
     };
 
     /**
@@ -60,9 +64,21 @@ function DirectControlController()
 
         this.connection = socket;
     };
+    /**
+     * @param {MotorStatusCollection} motorStatus
+     */
+    this.newMotorStatus = function (motorStatus)
+    {
+        this.connectionStatus.html('Ready to fly!');
+        app.MotorStatusRepository.removeListener(this);
+    };
 
     this.tearDown = function () {
+        app.MotorStatusRepository.removeListener(this);
+        app.NetworkStatusWidget.tearDown();
         app.NetworkStatusWidget = new NetworkStatusWidget();
+        app.MotorStatusHistoryWidget.tearDown();
+        app.MotorStatusHistoryWidget = new MotorStatusHistoryWidget();
 
         if (this.connection != undefined) {
             this.connection.close();

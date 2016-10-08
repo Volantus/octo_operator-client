@@ -1,7 +1,7 @@
 function NetworkStatusWidget()
 {
     AbstractWidget.call(this);
-    
+
     this.segment = undefined;
 
     this.init = function ()

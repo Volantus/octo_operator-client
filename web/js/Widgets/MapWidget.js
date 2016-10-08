@@ -14,7 +14,6 @@ function MapWidget()
 
     this.init = function ()
     {
-        console.log('[Map Widget] Initialisation');
         this.render('GeoPositionMap');
         this.refresh(function () {
             $('#GeoPositionMap').removeClass('loading');
