@@ -78,7 +78,6 @@ function MotorStatusHistoryWidget()
         }
 
         $.each(motorStatus.motors, function (i, motor) {
-            motor.currentSpeed = Math.floor((Math.random() * 100) + 1);
             app.MotorStatusHistoryWidget.data.datasets[motor.position].data.push(motor.currentSpeed);
 
             if (removeOldestValues) {

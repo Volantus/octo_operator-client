@@ -6,8 +6,11 @@ function IncomingMessageHandler()
     this.handle = function (message)
     {
         switch (message.type) {
-            case "motorStatus":
+            case 'motorStatus':
                 this.handleMotorStatus(message);
+                break;
+            case 'acknowledgeMessage':
+                console.log(message);
                 break;
             default:
                 console.log("Unable to handle incoming message of unknown type " + message.type);

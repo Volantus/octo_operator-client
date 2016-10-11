@@ -23,6 +23,7 @@ function DirectControlController()
         app.activeController = this;
         app.MotorStatusRepository.addListener(this);
 
+        app.DirectControlWidget.init();
         app.NetworkStatusWidget.init();
         app.NetworkStatusWidget.setConnectionStatus('Connecting...', '#54c8ff');
 
@@ -69,8 +70,17 @@ function DirectControlController()
      */
     this.newMotorStatus = function (motorStatus)
     {
+        app.DirectControlWidget.enableAllButtons();
         this.connectionStatus.html('Ready to fly!');
         app.MotorStatusRepository.removeListener(this);
+    };
+
+    /**
+     * @param {Object} message
+     */
+    this.sendMessage = function (message)
+    {
+        this.connection.send(JSON.stringify(message));
     };
 
     this.tearDown = function () {
@@ -79,6 +89,7 @@ function DirectControlController()
         app.NetworkStatusWidget = new NetworkStatusWidget();
         app.MotorStatusHistoryWidget.tearDown();
         app.MotorStatusHistoryWidget = new MotorStatusHistoryWidget();
+        app.DirectControlWidget.tearDown();
 
         if (this.connection != undefined) {
             this.connection.close();

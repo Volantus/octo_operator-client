@@ -42,20 +42,35 @@ body {
     padding-right: 16px;
 }
 
+#copterStructureWidget,
+#ControlRequestsWidget {
+    width: 239px;
+    float: left;
+    margin-right: 19px;
+}
+
 #copterStructureWidget img {
     margin: 8px;
     height: 218px;
 }
 
-#copterStructureWidget .segment {
+#copterStructureWidget .segment,
+#ControlRequestsWidget .segment{
     width: 239px;
+    height: 241px;
 }
 
-#copterStructureWidget .header {
+#copterStructureWidget .header,
+#ControlRequestsWidget .header{
     width: 239px;
 }
 
 #motorStatusHistoryChart {
     height: 269px;
     width: 100%;
+}
+
+#ControlRequestsWidget .inline.loader {
+    float: left !important;
+    margin-right: 12px !important;
 }
