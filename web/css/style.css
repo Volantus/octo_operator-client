@@ -60,6 +60,11 @@ body {
     height: 241px;
 }
 
+#ControlRequestsWidget .segment{
+    padding-top: 9px;
+    overflow: hidden;
+}
+
 #copterStructureWidget .header,
 #ControlRequestsWidget .header{
     width: 239px;

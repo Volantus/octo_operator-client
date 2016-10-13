@@ -25,6 +25,7 @@ function DirectControlController()
 
         app.DirectControlWidget.init();
         app.NetworkStatusWidget.init();
+        app.ControlRequestsWidget.init();
         app.NetworkStatusWidget.setConnectionStatus('Connecting...', '#54c8ff');
 
         this.connectionStatus       = $('#connectionStatus');
@@ -76,10 +77,12 @@ function DirectControlController()
     };
 
     /**
-     * @param {Object} message
+     * @param {AbstractMessage} message
      */
     this.sendMessage = function (message)
     {
+        app.ControlRequestsWidget.messageSent(message);
+        AcknowledgeMessageFactory.messageSent(message);
         this.connection.send(JSON.stringify(message));
     };
 
@@ -90,6 +93,9 @@ function DirectControlController()
         app.MotorStatusHistoryWidget.tearDown();
         app.MotorStatusHistoryWidget = new MotorStatusHistoryWidget();
         app.DirectControlWidget.tearDown();
+        app.DirectControlWidget = new DirectControlWidget();
+        app.ControlRequestsWidget.tearDown();
+        app.ControlRequestsWidget = new ControlRequestsWidget();
 
         if (this.connection != undefined) {
             this.connection.close();

@@ -46,6 +46,11 @@ function app()
     this.DirectControlWidget = undefined;
 
     /**
+     * @type {ControlRequestsWidget}
+     */
+    this.ControlRequestsWidget = undefined;
+
+    /**
      * @type {AbstractController}
      */
     this.activeController = undefined;
@@ -63,6 +68,7 @@ app.start = function () {
     this.NetworkStatusWidget      = new NetworkStatusWidget();
     this.MotorStatusHistoryWidget = new MotorStatusHistoryWidget();
     this.DirectControlWidget      = new DirectControlWidget();
+    this.ControlRequestsWidget    = new ControlRequestsWidget();
 
     this.activeController = undefined;
 };
