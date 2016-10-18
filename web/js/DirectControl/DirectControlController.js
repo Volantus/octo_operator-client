@@ -71,7 +71,6 @@ function DirectControlController()
      */
     this.newMotorStatus = function (motorStatus)
     {
-        app.DirectControlWidget.enableAllButtons();
         this.connectionStatus.html('Ready to fly!');
         app.MotorStatusRepository.removeListener(this);
     };

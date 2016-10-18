@@ -11,7 +11,7 @@
                 <h4 class="ui horizontal inverted divider header">
                     Switch Horizontal
                 </h4>
-                <button class="large large olive ui labeled icon fluid disabled button">
+                <button class="large large olive ui labeled icon fluid disabled button" id="horizontalMotorPowerButton">
                     <i class="play icon"></i>
                     Start motors
                 </button>
@@ -20,8 +20,8 @@
                 <h4 class="ui horizontal inverted divider header">
                     Switch Vertical
                 </h4>
-                <button class="large olive labeled icon ui fluid disabled button">
-                    <i class="stop icon"></i>
+                <button class="large olive labeled icon ui fluid disabled button" id="verticalMotorPowerButton">
+                    <i class="play icon"></i>
                     Start motors
                 </button>
             </div>
@@ -29,40 +29,40 @@
         <h4 class="ui horizontal divider header">
             Horizontal motors
         </h4>
-        <div class="ui two column grid">
+        <div class="ui two column grid horizontal-motors">
             <div class="ui column">
-                <div class="ui large fluid grey labeled icon disabled button" onclick="app.DirectControlWidget.accelerateHorizontalMotors();">
+                <div class="ui large fluid grey labeled icon disabled button" onclick="app.DirectControlWidget.changeSpeed('horizontal', 'accelerate');">
                     <i class="arrow up icon"></i>
                     Accelerate
                 </div><br>
-                <div class="ui large fluid grey labeled icon disabled button">
+                <div class="ui large fluid grey labeled icon disabled button" onclick="app.DirectControlWidget.changeSpeed('horizontal', 'decelerate');">
                     <i class="arrow down icon"></i>
                     Decelerate
                 </div>
             </div>
             <div class="ui column">
-                <div class="ui large grey fluid labeled icon disabled button">
+                <div class="ui large grey fluid labeled icon disabled button" onclick="app.DirectControlWidget.horizontalSpin('right')">
                     <i class="share icon"></i>
                     Right spin
                 </div><br>
-                <div class="ui large grey fluid labeled icon disabled button">
+                <div class="ui large grey fluid labeled icon disabled button" onclick="app.DirectControlWidget.horizontalSpin('left')">
                     <i class="reply icon"></i>
                     Left spin
                 </div>
             </div>
         </div>
-        <h4 class="ui horizontal divider header">
+        <h4 class="ui horizontal divider header horizontal">
             Vertical motors
         </h4>
-        <div class="ui two column grid">
+        <div class="ui two column grid vertical-motors">
             <div class="ui column">
-                <div class="ui large fluid grey labeled icon disabled button">
+                <div class="ui large fluid grey labeled icon disabled button" onclick="app.DirectControlWidget.changeSpeed('vertical', 'accelerate');">
                     <i class="add icon"></i>
                     Accelerate
                 </div><br>
             </div>
             <div class="ui column">
-                <div class="ui large fluid grey labeled icon disabled button">
+                <div class="ui large fluid grey labeled icon disabled button" onclick="app.DirectControlWidget.changeSpeed('vertical', 'decelerate');">
                     <i class="minus icon"></i>
                     Decelerate
                 </div>
