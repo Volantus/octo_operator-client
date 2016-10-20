@@ -19,13 +19,13 @@
 {% endblock %}
 
 {% block grid %}
-    <div class="row">
-        <div class="four wide column">
+    <div class="row" id="directControlPage">
+        <div class="four wide column left">
             {% include 'widgets/direct-control.html.twig' %}
             <br>
             {% include 'widgets/network-status.html.twig' with {'networkStatus': networkStatus} %}
         </div>
-        <div class="column">
+        <div class="column right">
             <div class="grid">
                 <div class="row">
                     {% include 'widgets/motor-status-history.html.twig' %}<br>

@@ -79,3 +79,13 @@ body {
     float: left !important;
     margin-right: 12px !important;
 }
+
+@media screen and (max-width: 1500px) {
+    #directControlPage .left.column {
+        width: 34.5%!important;
+    }
+
+    #directControlPage .right.column {
+        width: 45%!important;
+    }
+}
