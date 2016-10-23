@@ -8,7 +8,16 @@ function MotorStatusHistoryWidget()
      */
     this.chartOptions = {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    max: 1,
+                    min: 0,
+                    stepSize: 0.1
+                }
+            }]
+        }
     };
 
     /**
