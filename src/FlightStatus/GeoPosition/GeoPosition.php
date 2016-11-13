@@ -25,7 +25,7 @@ class GeoPosition implements \JsonSerializable
     private $longitude;
 
     /**
-     * @var float
+     * @var Altitude
      */
     private $altitude;
 
@@ -33,14 +33,14 @@ class GeoPosition implements \JsonSerializable
      * GeoPosition constructor.
      * @param float $latitude
      * @param float $longitude
-     * @param float $altimeter
+     * @param Altitude $altitude
      */
-    public function __construct(float $latitude, float $longitude, float $altimeter)
+    public function __construct(float $latitude, float $longitude, Altitude $altitude)
     {
         $this->time = Carbon::now();
         $this->latitude = $latitude;
         $this->longitude = $longitude;
-        $this->altitude = $altimeter;
+        $this->altitude = $altitude;
     }
 
     /**
@@ -60,9 +60,9 @@ class GeoPosition implements \JsonSerializable
     }
 
     /**
-     * @return float
+     * @return Altitude
      */
-    public function getAltitude(): float
+    public function getAltitude(): Altitude
     {
         return $this->altitude;
     }

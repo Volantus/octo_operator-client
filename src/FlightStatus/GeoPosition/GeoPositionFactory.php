@@ -17,11 +17,26 @@ use Volante\SkyBukkit\Monitor\Src\General\Factory;
 class GeoPositionFactory extends Factory
 {
     /**
+     * @var AltitudeFactory
+     */
+    private $altitudeFactory;
+
+    /**
+     * GeoPositionFactory constructor.
+     * @param AltitudeFactory $altitudeFactory
+     */
+    public function __construct(AltitudeFactory $altitudeFactory = null)
+    {
+        $this->altitudeFactory = $altitudeFactory ?: new AltitudeFactory();
+    }
+
+    /**
      * @inheritdoc
      */
     protected function build(array $data)
     {
-        return new GeoPosition($data['latitude'], $data['longitude'], $data['altitude']);
+        $altitude = $this->altitudeFactory->createFromRequest($data['altitude']);
+        return new GeoPosition($data['latitude'], $data['longitude'], $altitude);
     }
 
     /**
@@ -32,7 +47,7 @@ class GeoPositionFactory extends Factory
         return [
             'latitude'  => new Required([new NotBlank(), new Type('numeric')]),
             'longitude' => new Required([new NotBlank(), new Type('numeric')]),
-            'altitude' => new Required([new NotBlank(), new Type('numeric')]),
+            'altitude' => new Required([new NotBlank(), new Type('array')]),
             'measurementTime' => new Optional()
         ];
     }
