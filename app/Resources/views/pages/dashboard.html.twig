@@ -8,19 +8,5 @@
     </script>
 {% endblock %}
 
-{% block header %}
-    <h1 class="ui top dividing inverted dark blue header">
-        <i class="dashboard icon"></i>
-        <div class="content">
-            Dashboard
-            <div class="sub header" id="dashBoardLastUpdateHeader">Last update: 0 seconds ago</div>
-        </div>
-    </h1>
-{% endblock %}
-
 {% block grid %}
-    <div class="row">
-        {% include 'widgets/map.html.twig' %}
-        {% include 'widgets/network-status.html.twig' with {'networkStatus': networkStatus} %}
-    </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="app.manifest">
+<html>
 <head>
     <title>SkyBukkit - Dashboard</title>
     <link rel="shortcut icon" type="image/x-icon" href="/images/logo.png">
@@ -16,6 +16,7 @@
     <script src="/js/app.js"></script>
     <script src="/js/AbstractController.js"></script>
     <script src="/js/Dashboard/DashboardController.js"></script>
+    <script src="/js/Widgets/WidgetController.js"></script>
     <script src="/js/Widgets/AbstractWidget.js"></script>
     <script src="/js/Widgets/MapWidget.js"></script>
     <script src="/js/Widgets/NetworkStatusWidget.js"></script>
@@ -49,21 +50,18 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/images//apple-touch-icon-144x144.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="/images//apple-touch-icon-152x152.png" />
 
-    <meta name="viewport" content="width=1200; user-scalable=0;" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <script>
         $(document).ready(function () {
             app.start();
-            app.switchPage(undefined, '/dashboard');
         });
 
         $(document).bind('touchmove', function(e) {e.preventDefault();});
     </script>
     {{ include('base/menu.html.twig', {activeItem: activeItem}) }}
-    <div class="pusher">
-        <div id="content">
-        </div>
+    <div id="content">
     </div>
 </body>
 </html>
