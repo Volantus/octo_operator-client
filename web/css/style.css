@@ -1,6 +1,7 @@
 body {
     background: black;
     margin-top: -21px !important;
+    height: 100%;
 }
 
 .pusher {
@@ -95,4 +96,16 @@ body {
     padding-left: 17px;
     margin-top: 21px;
     padding-top: 47px;
+    height: 100%;
+}
+
+#MapWidget {
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 2px;
+}
+
+#MapWidgetColumn {
+    height: 50%;
 }

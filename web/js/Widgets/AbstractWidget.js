@@ -13,7 +13,17 @@ function AbstractWidget()
     /**
      * @type {string}
      */
+    this.segmentId = 'MapWidget';
+
+    /**
+     * @type {string}
+     */
     this.template = undefined;
+
+    /**
+     * @type {object}
+     */
+    this.segment = undefined;
 
     this.init = function ()
     {
@@ -36,5 +46,6 @@ function AbstractWidget()
     this.show = function ()
     {
         $('#ContentGrid').append(this.template);
+        this.segment = $('#' + this.segmentId);
     }
 }

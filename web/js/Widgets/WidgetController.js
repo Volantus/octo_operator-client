@@ -22,8 +22,8 @@ function WidgetController()
 
                 if (!widget.active) {
                     console.log('[WidgetController] Initializing ' + widgetId + ' widget ...');
-                    widget.init();
                     widget.show();
+                    widget.init();
                     widget.active = true;
                     console.log('[WidgetController] Finished initializing ' + widgetId + ' widget!');
                 }
