@@ -13,6 +13,7 @@ function WidgetController()
     this.init = function ()
     {
         this.widgets[MapWidget.id] = new MapWidget();
+        this.widgets[MapWidget.id].loadTemplate();
 
         this.selectionDropdown = $('#WidgetSelectionDropdown');
         this.selectionDropdown.dropdown({
@@ -22,6 +23,7 @@ function WidgetController()
                 if (!widget.active) {
                     console.log('[WidgetController] Initializing ' + widgetId + ' widget ...');
                     widget.init();
+                    widget.show();
                     widget.active = true;
                     console.log('[WidgetController] Finished initializing ' + widgetId + ' widget!');
                 }

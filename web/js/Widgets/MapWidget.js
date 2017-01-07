@@ -7,6 +7,11 @@ function MapWidget()
      */
     this.subscriber = undefined;
 
+    /**
+     * @type {string}
+     */
+    this.templateId = 'mapWidget';
+
     this.init = function ()
     {
         this.subscriber = new Subscriber(GeoPositionMessage.topic, 5, 'MapWidget', this.handleMessage);

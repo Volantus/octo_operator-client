@@ -1,5 +1,6 @@
 body {
     background: black;
+    margin-top: -21px !important;
 }
 
 .pusher {
@@ -88,4 +89,10 @@ body {
     #directControlPage .right.column {
         width: 45%!important;
     }
+}
+
+#ContentGrid {
+    padding-left: 17px;
+    margin-top: 21px;
+    padding-top: 47px;
 }
