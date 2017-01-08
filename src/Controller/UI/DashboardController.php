@@ -18,11 +18,6 @@ class DashboardController extends Controller
     private $TemplateEngine;
 
     /**
-     * @var NetworkStatusRepository
-     */
-    private $networkStatusRepository;
-
-    /**
      * DashboardController constructor.
      * @param EngineInterface $TemplateEngine
      * @param NetworkStatusRepository $networkStatusRepository
@@ -39,14 +34,5 @@ class DashboardController extends Controller
     public function init()
     {
         return $this->TemplateEngine->renderResponse('base/init.html.twig', ['activeItem' => 'dashboard']);
-    }
-
-    /**
-     * @return Response
-     */
-    public function show()
-    {
-        $networkStatus = $this->networkStatusRepository->get();
-        return $this->TemplateEngine->renderResponse('pages/dashboard.html.twig', ['networkStatus' => $networkStatus]);
     }
 }

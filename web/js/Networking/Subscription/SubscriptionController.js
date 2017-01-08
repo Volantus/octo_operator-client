@@ -6,7 +6,7 @@ function SubscriptionsController()
     this.activeSubscriptions = {};
 
     /**
-     * @param {AbstractSubscriber} subscriber
+     * @param {Subscriber} subscriber
      */
     this.subscribe = function (subscriber)
     {
@@ -20,7 +20,7 @@ function SubscriptionsController()
     };
 
     /**
-     * @param {AbstractSubscriber} subscriber
+     * @param {Subscriber} subscriber
      */
     this.unsubscribe = function (subscriber)
     {

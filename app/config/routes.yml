@@ -1,31 +1,3 @@
 init:
     path: /
     defaults: { _controller: controller.ui.dashboard:init }
-
-dashboard:
-    path: /dashboard
-    defaults: { _controller: controller.ui.dashboard:show }
-
-directControl:
-    path: /direct-control
-    defaults: { _controller: controller.ui.direct-control:show }
-
-flightStatusCreation:
-    path: /api/flight-status
-    defaults: { _controller: controller.api.flight-status-controller:create }
-    methods:  [POST]
-
-GeoPositionsRead:
-    path: /api/geo-positions
-    defaults: { _controller: controller.api.geo-positions-controller:all }
-    methods: [GET]
-
-GeoPositionsDelete:
-    path: /api/geo-positions
-    defaults: { _controller: controller.api.geo-positions-controller:deleteAll }
-    methods: [DELETE]
-
-NetworkStatusRead:
-    path: /api/network-status
-    defaults: { _controller: controller.api.network-status:getStatus }
-    methods: [GET]
