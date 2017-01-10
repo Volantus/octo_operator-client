@@ -13,17 +13,19 @@
   "require": {
     "symfony/symfony": "^3.1",
     "vlucas/phpdotenv": "^2.4",
-    "beberlei/assert": "^2.6",
+    "beberlei/assert": "^2.7",
     "symfony/cache": "^3.1",
     "nesbot/carbon": "^1.21",
     "influxdb/influxdb-php": "^1.14",
-    "cboden/ratchet": "^0.3.6"
+    "cboden/ratchet": "^0.3.6",
+    "phpunit/phpunit": "^5.7"
   },
   "autoload": {
     "psr-4": {
       "Volante\\SkyBukkit\\Monitor\\": "",
       "Volante\\SkyBukkit\\Monitor\\App\\": "app",
-      "Volante\\SkyBukkit\\Monitor\\Src\\": "src"
+      "Volante\\SkyBukkit\\Monitor\\Src\\": "src",
+      "Volante\\SkyBukkit\\Monitor\\Tests\\": "tests"
     }
   }
 }
