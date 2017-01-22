@@ -67,7 +67,7 @@ function MapWidget()
     {
         var coordinates = ol.proj.fromLonLat([currentPosition.longitude, currentPosition.latitude]);
 
-        if (this.marker != undefined) {
+        if (this.marker !== undefined) {
             var polygonCoordinates = this.polygon.getCoordinates()[0];
             polygonCoordinates.push(this.marker.getCoordinates());
             this.polygon.setCoordinates([polygonCoordinates]);
