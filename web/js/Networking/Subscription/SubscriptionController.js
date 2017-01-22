@@ -10,7 +10,7 @@ function SubscriptionsController()
      */
     this.subscribe = function (subscriber)
     {
-        if (this.activeSubscriptions[subscriber.topic] == undefined) {
+        if (this.activeSubscriptions[subscriber.topic] === undefined) {
             this.activeSubscriptions[subscriber.topic] = [];
         }
 
@@ -24,11 +24,11 @@ function SubscriptionsController()
      */
     this.unsubscribe = function (subscriber)
     {
-        var index = this.activeSubscriptions[topic].indexOf(widget);
-        this.activeSubscriptions[topic].slice(index, 1);
+        var index = this.activeSubscriptions[subscriber.topic].indexOf(subscriber);
+        this.activeSubscriptions[subscriber.topic].slice(index, 1);
 
-        if (this.activeSubscriptions[topic].length == 0) {
-            this.activeSubscriptions[topic] = undefined;
+        if (this.activeSubscriptions[subscriber.topic].length === 0) {
+            this.activeSubscriptions[subscriber.topic] = undefined;
         }
 
         console.log('[SubscriptionsController] Removed subscriber ' + subscriber.name + ' from topic ' + subscriber.topic);

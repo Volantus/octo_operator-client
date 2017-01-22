@@ -34,7 +34,6 @@ function MapWidget()
 
     this.init = function ()
     {
-
         this.subscriber = new Subscriber(GeoPositionMessage.topic, 5, 'MapWidget', this.handleMessage);
         this.subscriber.register();
 
