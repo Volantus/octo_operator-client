@@ -18,22 +18,26 @@ function Connection(role, address)
     /**
      * @type {WebSocket}
      */
-    this.connection = new WebSocket(address);
+    this.socket = new WebSocket(address);
 
-    this.connection.onopen = function ()
+    this.socket.onopen = function ()
     {
         console.log ('[Connection] Connection ' + role + ' established successfully!');
+
+        var socket = app.ConnectionController.connections[role].socket;
+        socket.send(JSON.stringify(new AuthenticationMessage(app.ConnectionController.authenticationKey)));
+        socket.send(JSON.stringify(new IntroductionMessage(1)));
 
         app.ConnectionController.connections[role].established = true;
         app.ConnectionController.determineActiveConnection();
     };
 
-    this.connection.onclose = function ()
+    this.socket.onclose = function ()
     {
         app.ConnectionController.connections[role].handleError();
     };
 
-    this.connection.onmessage = function (e)
+    this.socket.onmessage = function (e)
     {
 
     };
@@ -55,11 +59,11 @@ function Connection(role, address)
         if (!connection.established) {
             clearInterval(connection.checkInterval);
 
-            connection.connection.onclose = undefined;
-            connection.connection.onerror = undefined;
-            connection.connection.onmessage = undefined;
-            connection.connection.onopen = function () {
-                connection.connection.close();
+            connection.socket.onclose = undefined;
+            connection.socket.onerror = undefined;
+            connection.socket.onmessage = undefined;
+            connection.socket.onopen = function () {
+                connection.socket.close();
             };
 
             connection.handleError();

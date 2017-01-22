@@ -7,11 +7,6 @@
 function AbstractMessage(type, title, data)
 {
     /**
-     * @type {number}
-     */
-    this.id = MessageSequence.nextValue();
-
-    /**
      * @type {string}
      */
     this.title = title;

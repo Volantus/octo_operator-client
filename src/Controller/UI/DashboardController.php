@@ -20,12 +20,10 @@ class DashboardController extends Controller
     /**
      * DashboardController constructor.
      * @param EngineInterface $TemplateEngine
-     * @param NetworkStatusRepository $networkStatusRepository
      */
-    public function __construct(EngineInterface $TemplateEngine, NetworkStatusRepository $networkStatusRepository = null)
+    public function __construct(EngineInterface $TemplateEngine)
     {
         $this->TemplateEngine = $TemplateEngine;
-        $this->networkStatusRepository = $networkStatusRepository ?: new NetworkStatusRepository();
     }
 
     /**
@@ -33,6 +31,9 @@ class DashboardController extends Controller
      */
     public function init()
     {
-        return $this->TemplateEngine->renderResponse('base/init.html.twig', ['activeItem' => 'dashboard']);
+        return $this->TemplateEngine->renderResponse('base/init.html.twig', [
+            'activeItem' => 'dashboard',
+            'authenticationKey' => getenv('AUTH_KEY')
+        ]);
     }
 }

@@ -23,6 +23,8 @@
     <script src="/js/GeoPosition/GeoPositionMessage.js"></script>
     <script src="/js/DirectControl/IncomingMessageHandler.js"></script>
     <script src="/js/Networking/Messages/AbstractMessage.js"></script>
+    <script src="/js/Networking/Messages/AuthenticationMessage.js"></script>
+    <script src="/js/Networking/Messages/IntroductionMessage.js"></script>
     <script src="/js/Networking/Subscription/Subscriber.js"></script>
     <script src="/js/Networking/Subscription/SubscriptionController.js"></script>
     <script src="/js/Networking/Subscription/SubscriptionMessage.js"></script>
@@ -41,7 +43,7 @@
 <body>
     <script>
         $(document).ready(function () {
-            app.start();
+            app.start('{{ authenticationKey }}');
         });
 
         $(document).bind('touchmove', function(e) {e.preventDefault();});

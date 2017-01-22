@@ -1,5 +1,14 @@
-function ConnectionController()
+/**
+ * @param {string} authenticationKey
+ * @constructor
+ */
+function ConnectionController(authenticationKey)
 {
+    /**
+     * @type {string}
+     */
+    this.authenticationKey = authenticationKey;
+
     /**
      * @type {Connection[]}
      */

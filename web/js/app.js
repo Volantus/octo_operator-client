@@ -21,7 +21,10 @@ function app()
     this.ConnectionController = undefined;
 }
 
-app.start = function () {
+/**
+ * @param {string} authenticationKey
+ */
+app.start = function (authenticationKey) {
     this.TemplateRepository = new TemplateRepository();
     this.TemplateRepository.init();
 
@@ -30,6 +33,6 @@ app.start = function () {
 
     this.SubscriptionController = new SubscriptionsController();
 
-    this.ConnectionController = new ConnectionController();
+    this.ConnectionController = new ConnectionController(authenticationKey);
     this.ConnectionController.init();
 };
