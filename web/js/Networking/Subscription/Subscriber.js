@@ -13,14 +13,9 @@ function Subscriber(topic, offset, name, callback)
     this.defaultOffset = offset;
 
     /**
-     * @type {string}
+     * @type {TopicStatus}
      */
-    this.currentMessageId = undefined;
-
-    /**
-     * @type {string}
-     */
-    this.topic = topic;
+    this.topic = new TopicStatus(topic, 0);
 
     /**
      * @type {string}
@@ -33,11 +28,16 @@ function Subscriber(topic, offset, name, callback)
     this.callback = callback;
 
     /**
+     * @type {boolean}
+     */
+    this.provisioned = false;
+
+    /**
      * @param {SubscriptionMessage} message
      */
     this.handle = function (message)
     {
-        this.currentMessageId = message.id;
+        this.currentRevision = message.id;
         this.callback(message);
     };
 

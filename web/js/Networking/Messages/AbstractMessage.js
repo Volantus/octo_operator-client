@@ -17,7 +17,6 @@ function AbstractMessage(type, title, data)
     this.type = type;
 
     /**
-     *
      * @type {Object}
      */
     this.data = data;

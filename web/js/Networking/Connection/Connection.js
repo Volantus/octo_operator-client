@@ -22,7 +22,7 @@ function Connection(role, address)
 
     this.socket.onopen = function ()
     {
-        console.log ('[Connection] Connection ' + role + ' established successfully!');
+        console.log ('[Connection] Connection ' + role + ' established!');
 
         var socket = app.ConnectionController.connections[role].socket;
         socket.send(JSON.stringify(new AuthenticationMessage(app.ConnectionController.authenticationKey)));
@@ -37,15 +37,16 @@ function Connection(role, address)
         app.ConnectionController.connections[role].handleError();
     };
 
-    this.socket.onmessage = function (e)
+    this.socket.onmessage = function (data)
     {
-
+        app.ConnectionController.onMessage(data);
     };
 
     this.handleError = function ()
     {
         console.log ('[Connection] Connection ' + role + ' closed');
 
+        clearInterval(app.ConnectionController.connections[role].checkInterval);
         app.ConnectionController.connections[role].established = false;
         app.ConnectionController.determineActiveConnection();
         setTimeout(function () {
@@ -57,8 +58,6 @@ function Connection(role, address)
         var connection = app.ConnectionController.connections[role];
 
         if (!connection.established) {
-            clearInterval(connection.checkInterval);
-
             connection.socket.onclose = undefined;
             connection.socket.onerror = undefined;
             connection.socket.onmessage = undefined;

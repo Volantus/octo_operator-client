@@ -32,7 +32,12 @@ function ConnectionController(authenticationKey)
     /**
      * @type {string}
      */
-    this.localAddress = '192.168.0.100';
+    this.localAddress = '192.168.1.101';
+
+    /**
+     * @type {IncomingMessageHandler}
+     */
+    this.messageHandler = new IncomingMessageHandler();
 
     this.init = function ()
     {
@@ -52,6 +57,8 @@ function ConnectionController(authenticationKey)
 
     this.determineActiveConnection = function()
     {
+        var connectionBefore = this.activeConnection;
+
         if (this.connections[Connection.roles.localRelayServer].established) {
             this.activeConnection = this.connections[Connection.roles.localRelayServer];
         } else {
@@ -59,6 +66,10 @@ function ConnectionController(authenticationKey)
         }
 
         this.refreshConnectionStatus();
+
+        if (connectionBefore !== this.activeConnection) {
+            app.SubscriptionController.connectionStatusChanged();
+        }
     };
 
     this.refreshConnectionStatus = function ()
@@ -92,6 +103,14 @@ function ConnectionController(authenticationKey)
      */
     this.sendData = function (data)
     {
-        this.activeConnection.connection.send(data);
-    }
+        this.activeConnection.socket.send(data);
+    };
+
+    /**
+     * @param {*} data
+     */
+    this.onMessage = function (data)
+    {
+        this.messageHandler.handle(JSON.parse(data.data));
+    };
 }
