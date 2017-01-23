@@ -155,7 +155,7 @@ function ConnectionController(authenticationKey)
 
     this.refreshCounterBar = function ()
     {
-        this.topBarMessagesInCounter.html(this.messageCounter.in);
-        this.topBarMessagesOutCounter.html(this.messageCounter.out);
+        this.topBarMessagesInCounter.html('<i class="download icon"></i>' + this.messageCounter.in);
+        this.topBarMessagesOutCounter.html('<i class="upload icon"></i>' + this.messageCounter.out);
     }
 }
