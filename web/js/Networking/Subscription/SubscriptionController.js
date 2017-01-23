@@ -38,6 +38,14 @@ function SubscriptionsController()
 
     this.connectionStatusChanged = function ()
     {
+        app.ConnectionController.broadcast(JSON.stringify(new SubscriptionStatusMessage([])));
+        $.each(app.SubscriptionController.activeSubscriptions, function (topicName, subscriptionGroup) {
+            $.each(subscriptionGroup, function (a, subscription) {
+                subscription.defaultOffset = 1;
+                subscription.provisioned = false;
+                app.SubscriptionController.refreshSubscriptions();
+            })
+        });
     };
 
     this.refreshSubscriptions = function ()

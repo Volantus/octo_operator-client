@@ -107,6 +107,18 @@ function ConnectionController(authenticationKey)
     };
 
     /**
+     * @param {string} data
+     */
+    this.broadcast = function (data)
+    {
+        $.each(this.connections, function (i, connection) {
+            if (connection.established) {
+                connection.socket.send(data);
+            }
+        })
+    };
+
+    /**
      * @param {*} data
      */
     this.onMessage = function (data)
