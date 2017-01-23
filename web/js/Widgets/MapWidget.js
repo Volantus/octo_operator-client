@@ -28,13 +28,13 @@ function MapWidget()
     this.markerFeature = undefined;
 
     /**
-     * @type {ol.geom.Polygon}
+     * @type {ol.geom.LineString}
      */
     this.polygon = undefined;
 
     this.init = function ()
     {
-        this.subscriber = new Subscriber(GeoPositionMessage.topic, 5, 'MapWidget', this.handleMessage);
+        this.subscriber = new Subscriber(GeoPositionMessage.topic, 100, 'MapWidget', this.handleMessage);
         this.subscriber.register();
 
         this.map = new ol.Map({
@@ -46,17 +46,16 @@ function MapWidget()
             }),
             target: this.segmentId
         });
-        this.initMarkerLayer();
         this.initPolygonLayer();
-        this.render(new GeoPosition(47.625347, 13.458292));
-        this.render(new GeoPosition(48.625347, 12.458292));
+        this.initMarkerLayer();
     };
 
     /**
-     * @param {GeoPositionMessage} message
+     * @param {GeoPosition} message
      */
     this.handleMessage = function (message)
     {
+        app.WidgetController.widgets[MapWidget.id].render(message);
     };
 
     /**
@@ -67,21 +66,19 @@ function MapWidget()
         var coordinates = ol.proj.fromLonLat([currentPosition.longitude, currentPosition.latitude]);
 
         if (this.marker !== undefined) {
-            var polygonCoordinates = this.polygon.getCoordinates()[0];
-            polygonCoordinates.push(this.marker.getCoordinates());
-            this.polygon.setCoordinates([polygonCoordinates]);
+            this.polygon.appendCoordinate(this.marker.getCoordinates());
             this.marker.setCoordinates(coordinates);
         } else {
             this.marker = new ol.geom.Point(coordinates);
             this.markerFeature.setGeometry(this.marker);
+            this.map.getView().setCenter(coordinates);
         }
-
-        this.map.getView().setCenter(coordinates);
     };
     
     this.initPolygonLayer = function ()
     {
-        this.polygon = new ol.geom.Polygon([[]]);
+        this.polygon = new ol.geom.LineString([]);
+        this.polygon.transform('EPSG:4326', 'EPSG:3857');
         var feature = new ol.Feature(this.polygon);
 
         var vectorSource = new ol.source.Vector();

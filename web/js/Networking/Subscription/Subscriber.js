@@ -37,7 +37,7 @@ function Subscriber(topic, offset, name, callback)
      */
     this.handle = function (message)
     {
-        this.currentRevision = message.id;
+        this.topic.revision++;
         this.callback(message);
     };
 

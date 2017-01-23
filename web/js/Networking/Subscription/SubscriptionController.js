@@ -92,5 +92,19 @@ function SubscriptionsController()
         });
 
         app.ConnectionController.sendData(JSON.stringify(new SubscriptionStatusMessage(status)));
+    };
+
+    /**
+     * @param {AbstractTopicMessage|GeoPosition} message
+     */
+    this.distributeTopicContainer = function (message)
+    {
+        if (this.activeSubscriptions[message.topic.name] !== undefined) {
+            $.each(this.activeSubscriptions[message.topic.name], function (i, subscriber) {
+                if (subscriber.topic.revision < message.topic.revision) {
+                    subscriber.handle(message);
+                }
+            })
+        }
     }
 }

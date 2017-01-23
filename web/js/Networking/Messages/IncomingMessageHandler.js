@@ -10,7 +10,7 @@ function IncomingMessageHandler()
                 this.handleTopicStatusMessage(message);
                 break;
             case 'topicContainer':
-                this.handleTopicContainer(message);
+                this.handleTopicContainer(message.data);
                 break;
             default:
                 console.log("Unable to handle incoming message of unknown type " + message.type);
@@ -32,10 +32,18 @@ function IncomingMessageHandler()
     };
 
     /**
-     * @param {Object} message
+     * @param {{topic: *, receivedAt: *, payload: *}} data
      */
-    this.handleTopicContainer = function (message)
+    this.handleTopicContainer = function (data)
     {
-        console.log(message);
+        var topic = new TopicStatus(data.topic.name, data.topic.revision);
+        var receivedAt = moment(data.receivedAt);
+
+        switch (data.topic.name) {
+            case 'geoPosition':
+                var message = new GeoPosition(topic, receivedAt, data.payload.latitude, data.payload.longitude, data.payload.altitude);
+                app.SubscriptionController.distributeTopicContainer(message);
+                break;
+        }
     }
 }
