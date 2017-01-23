@@ -39,11 +39,35 @@ function ConnectionController(authenticationKey)
      */
     this.messageHandler = new IncomingMessageHandler();
 
+    /**
+     * @type {{in: number, out: number}}
+     */
+    this.messageCounter = {
+        in: 0,
+        out: 0
+    };
+
+    /**
+     * @type {*}
+     */
+    this.topBarMessagesOutCounter = undefined;
+
+    /**
+     * @type {*}
+     */
+    this.topBarMessagesInCounter = undefined;
+
     this.init = function ()
     {
         this.topBar = $('#topBarRightMenu');
+        this.topBarMessagesOutCounter = $('#messagesOutCounter');
+        this.topBarMessagesInCounter = $('#messagesInCounter');
         this.connect(Connection.roles.localRelayServer, 'ws://' + this.localAddress + ':9000');
         this.connect(Connection.roles.remoteRelayServer, 'ws://' + this.remoteAddress + ':17468');
+
+        setInterval(function () {
+            app.ConnectionController.refreshCounterBar();
+        }, 1000);
     };
 
     /**
@@ -104,6 +128,7 @@ function ConnectionController(authenticationKey)
     this.sendData = function (data)
     {
         this.activeConnection.socket.send(data);
+        this.messageCounter.out++;
     };
 
     /**
@@ -114,6 +139,7 @@ function ConnectionController(authenticationKey)
         $.each(this.connections, function (i, connection) {
             if (connection.established) {
                 connection.socket.send(data);
+                app.ConnectionController.messageCounter.out++;
             }
         })
     };
@@ -124,5 +150,12 @@ function ConnectionController(authenticationKey)
     this.onMessage = function (data)
     {
         this.messageHandler.handle(JSON.parse(data.data));
+        this.messageCounter.in++;
     };
+
+    this.refreshCounterBar = function ()
+    {
+        this.topBarMessagesInCounter.html(this.messageCounter.in);
+        this.topBarMessagesOutCounter.html(this.messageCounter.out);
+    }
 }
