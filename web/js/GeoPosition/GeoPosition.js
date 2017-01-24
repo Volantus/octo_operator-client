@@ -10,7 +10,18 @@ function GeoPosition(topic, receivedAt, latitude, longitude, altitude)
 {
     AbstractTopicMessage.call(this, topic, receivedAt);
 
+    /**
+     * @type {float}
+     */
     this.longitude = longitude;
+
+    /**
+     * @type {float}
+     */
     this.latitude = latitude;
+
+    /**
+     * @type {float}
+     */
     this.altitude = altitude;
 }

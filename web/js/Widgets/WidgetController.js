@@ -15,6 +15,12 @@ function WidgetController()
         this.widgets[MapWidget.id] = new MapWidget();
         this.widgets[MapWidget.id].loadTemplate();
 
+        this.widgets[AbsoluteAltitudeWidget.id] = new AbsoluteAltitudeWidget();
+        this.widgets[AbsoluteAltitudeWidget.id].loadTemplate();
+
+        this.widgets[RelativeAltitudeWidget.id] = new RelativeAltitudeWidget();
+        this.widgets[RelativeAltitudeWidget.id].loadTemplate();
+
         this.selectionDropdown = $('#WidgetSelectionDropdown');
         this.selectionDropdown.dropdown({
             onChange: function (widgetId) {

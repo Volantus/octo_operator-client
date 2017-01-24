@@ -32,7 +32,7 @@ function ConnectionController(authenticationKey)
     /**
      * @type {string}
      */
-    this.localAddress = '192.168.1.102';
+    this.localAddress = '192.168.1.104';
 
     /**
      * @type {IncomingMessageHandler}
