@@ -47,7 +47,7 @@ function RelativeAltitudeWidget()
         } else {
             var relativeAltitude = message.altitude - widget.baseAltitude;
             widget.value.html(relativeAltitude.toFixed(2));
-            widget.statistic.removeClass('red orange olive');
+            widget.statistic.removeClass('red orange green');
 
             if (relativeAltitude < 1) {
                 widget.statistic.addClass('red');

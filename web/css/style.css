@@ -109,17 +109,17 @@ body {
 #MapWidgetColumn {
     height: 50%;
     width: 35%;
+    max-height: 457px;
 }
 
 #AltitudeHistoryWidget canvas {
     margin-top: 20px;
-    height: 291px !important;
     margin-bottom: -19px;
-    width: 766px !important;
 }
 
 #AbsoluteAltitudeWidget .segment,
-#RelativeAltitudeWidget .segment {
+#RelativeAltitudeWidget .segment,
+#ClimbRateWidget .segment{
     width: 230px;
 }
 

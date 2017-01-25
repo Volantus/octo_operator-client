@@ -21,6 +21,9 @@ function WidgetController()
         this.widgets[RelativeAltitudeWidget.id] = new RelativeAltitudeWidget();
         this.widgets[RelativeAltitudeWidget.id].loadTemplate();
 
+        this.widgets[ClimbRateWidget.id] = new ClimbRateWidget();
+        this.widgets[ClimbRateWidget.id].loadTemplate();
+
         this.widgets[AltitudeHistoryWidget.id] = new AltitudeHistoryWidget();
         this.widgets[AltitudeHistoryWidget.id].loadTemplate();
 
