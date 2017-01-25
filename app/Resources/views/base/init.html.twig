@@ -21,6 +21,7 @@
     <script src="/js/Widgets/MapWidget.js"></script>
     <script src="/js/Widgets/AbsoluteAltitudeWidget.js"></script>
     <script src="/js/Widgets/RelativeAltitudeWidget.js"></script>
+    <script src="/js/Widgets/AltitudeHistoryWidget.js"></script>
     <script src="/js/GeoPosition/GeoPosition.js"></script>
     <script src="/js/GeoPosition/GeoPositionMessage.js"></script>
     <script src="/js/Networking/Messages/IncomingMessageHandler.js"></script>
@@ -55,7 +56,7 @@
         $(document).bind('touchmove', function(e) {e.preventDefault();});
     </script>
     {{ include('base/menu.html.twig', {activeItem: activeItem}) }}
-    <div class="ui grid" id="ContentGrid">
+    <div id="ContentGrid">
 
     </div>
 </body>

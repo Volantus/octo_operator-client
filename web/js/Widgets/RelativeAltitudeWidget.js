@@ -31,7 +31,7 @@ function RelativeAltitudeWidget()
     {
         this.value = $('#RelativeAltitudeWidget').find('.value');
         this.statistic = $('#RelativeAltitudeWidget').find('.statistic');
-        this.subscriber = new Subscriber(GeoPositionMessage.topic, 2, 'relativeAltitudeWidget', this.handleMessage);
+        this.subscriber = new Subscriber(GeoPositionMessage.topic, 3, 'relativeAltitudeWidget', this.handleMessage);
         this.subscriber.register();
     };
 

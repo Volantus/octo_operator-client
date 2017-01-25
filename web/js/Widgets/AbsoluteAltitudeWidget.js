@@ -20,7 +20,7 @@ function AbsoluteAltitudeWidget()
     this.init = function ()
     {
         this.value = $('#AbsoluteAltitudeWidget').find('.value');
-        this.subscriber = new Subscriber(GeoPositionMessage.topic, 1, 'absoluteAltitudeWidget', this.handleMessage);
+        this.subscriber = new Subscriber(GeoPositionMessage.topic, 3, 'absoluteAltitudeWidget', this.handleMessage);
         this.subscriber.register();
     };
 
