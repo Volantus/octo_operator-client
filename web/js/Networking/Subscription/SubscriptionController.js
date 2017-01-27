@@ -43,9 +43,9 @@ function SubscriptionsController()
             $.each(subscriptionGroup, function (a, subscription) {
                 subscription.defaultOffset = 1;
                 subscription.provisioned = false;
-                app.SubscriptionController.refreshSubscriptions();
             })
         });
+        app.SubscriptionController.refreshSubscriptions();
     };
 
     this.refreshSubscriptions = function ()
