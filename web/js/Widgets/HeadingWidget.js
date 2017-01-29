@@ -1,4 +1,4 @@
-function AttitudeWidget()
+function HeadingWidget()
 {
     AbstractWidget.call(this);
 
@@ -10,7 +10,7 @@ function AttitudeWidget()
     /**
      * @type {string}
      */
-    this.templateId = 'attitudeWidget';
+    this.templateId = 'headingWidget';
 
     /**
      * @type {*}
@@ -19,9 +19,9 @@ function AttitudeWidget()
 
     this.init = function ()
     {
-        var segment = $('#AttitudeWidget');
-        this.instrument = $.flightIndicator('#attitudeInstrument', 'attitude', {roll:0, pitch:0, size: segment.width(), showBox : false});
-        this.subscriber = new Subscriber(GyroStatus.topic, 2, 'attitudeWidget', this.handleMessage);
+        var segment = $('#HeadingWidget');
+        this.instrument = $.flightIndicator('#headingInstrument', 'heading', {roll:0, pitch:0, size: segment.width(), showBox : false});
+        this.subscriber = new Subscriber(GyroStatus.topic, 2, 'headingWidget', this.handleMessage);
         this.subscriber.register();
 
         segment.height(segment.height() - 17);
@@ -32,9 +32,8 @@ function AttitudeWidget()
      */
     this.handleMessage = function (message)
     {
-        var widget = app.WidgetController.widgets[AttitudeWidget.id];
-        widget.instrument.setRoll(message.roll);
-        widget.instrument.setPitch(message.pitch);
+        var widget = app.WidgetController.widgets[HeadingWidget.id];
+        widget.instrument.setHeading(message.yaw);
     };
 
 
@@ -47,4 +46,4 @@ function AttitudeWidget()
 /**
  * @type {string}
  */
-AttitudeWidget.id = 'attitudeWidget';
+HeadingWidget.id = 'headingWidget';

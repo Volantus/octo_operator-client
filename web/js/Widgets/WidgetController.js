@@ -30,6 +30,9 @@ function WidgetController()
         this.widgets[AttitudeWidget.id] = new AttitudeWidget();
         this.widgets[AttitudeWidget.id].loadTemplate();
 
+        this.widgets[HeadingWidget.id] = new HeadingWidget();
+        this.widgets[HeadingWidget.id].loadTemplate();
+
         this.selectionDropdown = $('#WidgetSelectionDropdown');
         this.selectionDropdown.dropdown({
             onChange: function (widgetId) {
