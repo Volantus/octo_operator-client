@@ -101,9 +101,9 @@ body {
 #MapWidget {
     height: 100%;
     width: 100%;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
 }
 
 #MapWidgetColumn {
