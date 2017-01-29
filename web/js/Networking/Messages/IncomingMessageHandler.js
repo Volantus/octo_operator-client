@@ -38,10 +38,15 @@ function IncomingMessageHandler()
     {
         var topic = new TopicStatus(data.topic.name, data.topic.revision);
         var receivedAt = moment(data.receivedAt);
+        var message = undefined;
 
         switch (data.topic.name) {
             case 'geoPosition':
-                var message = new GeoPosition(topic, receivedAt, data.payload.latitude, data.payload.longitude, data.payload.altitude);
+                message = new GeoPosition(topic, receivedAt, data.payload.latitude, data.payload.longitude, data.payload.altitude);
+                app.SubscriptionController.distributeTopicContainer(message);
+                break;
+            case 'gyroStatus':
+                message = new GyroStatus(topic, receivedAt, data.payload.yaw, data.payload.pitch, data.payload.roll);
                 app.SubscriptionController.distributeTopicContainer(message);
                 break;
         }

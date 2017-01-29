@@ -27,6 +27,9 @@ function WidgetController()
         this.widgets[AltitudeHistoryWidget.id] = new AltitudeHistoryWidget();
         this.widgets[AltitudeHistoryWidget.id].loadTemplate();
 
+        this.widgets[AttitudeWidget.id] = new AttitudeWidget();
+        this.widgets[AttitudeWidget.id].loadTemplate();
+
         this.selectionDropdown = $('#WidgetSelectionDropdown');
         this.selectionDropdown.dropdown({
             onChange: function (widgetId) {

@@ -123,6 +123,17 @@ body {
     width: 230px;
 }
 
+#AttitudeWidget {
+    width: 20%;
+    height: 42%;
+}
+
+#AttitudeWidget .segment {
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+}
+
 .widget {
     margin-top: 20px;
     float: left;
