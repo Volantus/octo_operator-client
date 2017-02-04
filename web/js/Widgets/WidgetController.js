@@ -33,6 +33,9 @@ function WidgetController()
         this.widgets[HeadingWidget.id] = new HeadingWidget();
         this.widgets[HeadingWidget.id].loadTemplate();
 
+        this.widgets[CurrentMotorStatusWidget.id] = new CurrentMotorStatusWidget();
+        this.widgets[CurrentMotorStatusWidget.id].loadTemplate();
+
         this.selectionDropdown = $('#WidgetSelectionDropdown');
         this.selectionDropdown.dropdown({
             onChange: function (widgetId) {

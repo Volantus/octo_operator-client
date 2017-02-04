@@ -125,7 +125,8 @@ body {
 
 #AttitudeWidget,
 #HeadingWidget{
-    width: 20%;
+    width: 23%;
+    color: rgba(75,292,192,0.4)
 }
 
 #AttitudeWidget .segment,
@@ -146,4 +147,12 @@ body {
     margin-top: 21px;
     float: left;
     margin-left: 32px;
+}
+
+#CurrentMotorStatusWidget {
+}
+
+#CurrentMotorStatusWidget .segment {
+    height: 100%;
+    padding-top: 46px;
 }
