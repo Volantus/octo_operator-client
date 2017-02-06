@@ -74,6 +74,11 @@ function MotorStatusHistoryWidget()
                     color: 'rgba(70, 70, 70, 0.4)'
                 }
             }]
+        },
+        elements: {
+            point: {
+                radius: 0
+            }
         }
     };
     this.init = function ()
@@ -91,13 +96,13 @@ function MotorStatusHistoryWidget()
                 borderJoinStyle: 'miter',
                 pointBorderColor: "rgba(" + this.colors[i][0] + "," + this.colors[i][1] + "," + this.colors[i][2] + ",1)",
                 pointBackgroundColor: "#636363",
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
+                pointBorderWidth: 0,
+                pointHoverRadius: 0,
                 pointHoverBackgroundColor: "rgba(" + this.colors[i][0] + "," + this.colors[i][1] + "," + this.colors[i][2] + ",1)",
                 pointHoverBorderColor: "rgba(" + this.colors[i][0] + "," + this.colors[i][1] + "," + this.colors[i][2] + ",1)",
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
+                pointHoverBorderWidth: 0,
+                pointRadius: 0,
+                pointHitRadius: 0,
                 data: [],
                 spanGaps: true
             })
