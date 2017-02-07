@@ -84,8 +84,10 @@ function CurrentMotorStatusWidget()
                     color: 'rgba(70, 70, 70, 0.4)'
                 },
                 beginAtZero: true,
-                suggestedMin: 0,
-                suggestedMax: 100
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
             }]
         }
     };

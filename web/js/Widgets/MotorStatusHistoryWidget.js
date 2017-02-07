@@ -59,6 +59,11 @@ function MotorStatusHistoryWidget()
      */
     this.options = {
         animation: false,
+        layout: {
+            padding: {
+                top: 20
+            }
+        },
         scales: {
             xAxes: [{
                 gridLines: {
@@ -87,7 +92,7 @@ function MotorStatusHistoryWidget()
             this.data.datasets.push({
                 label: "H" + i,
                 fill: false,
-                lineTension: 0.1,
+                lineTension: 0.5,
                 backgroundColor: "rgba(" + this.colors[i][0] + "," + this.colors[i][1] + "," + this.colors[i][2] + ",0.4)",
                 borderColor: "rgba(" + this.colors[i][0] + "," + this.colors[i][1] + "," + this.colors[i][2] + ",1)",
                 borderCapStyle: 'butt',
