@@ -41,6 +41,7 @@ function MotorStatusRadarWidget()
      */
     this.options = {
         animation: false,
+        startAngle:23,
         legend: {
             display: false
         },
