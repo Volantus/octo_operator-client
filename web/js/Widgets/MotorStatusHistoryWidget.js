@@ -71,12 +71,17 @@ function MotorStatusHistoryWidget()
                 },
                 ticks: {
                     autoSkip: true,
-                    autoSkipPadding: 10
+                    autoSkipPadding: 10,
                 }
             }],
             yAxes: [{
                 gridLines: {
                     color: 'rgba(70, 70, 70, 0.4)'
+                },
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
                 }
             }]
         },
