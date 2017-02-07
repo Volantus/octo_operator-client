@@ -161,3 +161,7 @@ body {
 {
     margin-top: 32px
 }
+
+#MotorStatusRadarWidget .segment {
+    padding-top: 35px;
+}

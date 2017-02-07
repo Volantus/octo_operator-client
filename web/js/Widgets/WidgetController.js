@@ -36,6 +36,9 @@ function WidgetController()
         this.widgets[CurrentMotorStatusWidget.id] = new CurrentMotorStatusWidget();
         this.widgets[CurrentMotorStatusWidget.id].loadTemplate();
 
+        this.widgets[MotorStatusRadarWidget.id] = new MotorStatusRadarWidget();
+        this.widgets[MotorStatusRadarWidget.id].loadTemplate();
+
         this.widgets[MotorStatusHistoryWidget.id] = new MotorStatusHistoryWidget();
         this.widgets[MotorStatusHistoryWidget.id].loadTemplate();
 
