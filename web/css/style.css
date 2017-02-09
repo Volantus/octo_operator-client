@@ -161,3 +161,7 @@ body {
 #MotorStatusRadarWidget .segment {
     padding-top: 35px;
 }
+
+#PidFrequencyWidget canvas {
+    margin-top: 24px;
+}

@@ -42,6 +42,9 @@ function WidgetController()
         this.widgets[MotorStatusHistoryWidget.id] = new MotorStatusHistoryWidget();
         this.widgets[MotorStatusHistoryWidget.id].loadTemplate();
 
+        this.widgets[PidFrequencyWidget.id] = new PidFrequencyWidget();
+        this.widgets[PidFrequencyWidget.id].loadTemplate();
+
         this.selectionDropdown = $('#WidgetSelectionDropdown');
         this.selectionDropdown.dropdown({
             onChange: function (widgetId) {

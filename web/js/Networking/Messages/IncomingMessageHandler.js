@@ -53,6 +53,10 @@ function IncomingMessageHandler()
                 message = new MotorStatus(topic, receivedAt, this.buildMotors(data.payload.motors));
                 app.SubscriptionController.distributeTopicContainer(message);
                 break;
+            case 'pidFrequencyStatus':
+                message = new PidFrequencyStatus(topic, receivedAt, data.payload.desired, data.payload.current);
+                app.SubscriptionController.distributeTopicContainer(message);
+                break;
         }
     };
 
