@@ -3,52 +3,48 @@
         <i class="dashboard teal icon"></i>
         Volante Operator
     </div>
-    <div class="ui dropdown icon pointing item" id="WidgetSelectionDropdown">
-        <i class="add icon"></i>&nbsp;Add instruments
+    <div class="ui dropdown icon pointing item instrument-selection" >
+        Geo position<i class="dropdown icon"></i>&nbsp;
         <div class="inverted menu">
-            <div class="header">
-                <i class="map icon"></i>
-                Geo Position
-            </div>
             <div class="item" data-value="mapWidget">Map Widget</div>
-            <div class="divider"></div>
-            <div class="header">
-                <i class="plane icon"></i>
-                Altitude
-            </div>
+        </div>
+    </div>
+    <div class="ui dropdown icon pointing item instrument-selection" >
+        Altitude<i class="dropdown icon"></i>&nbsp;
+        <div class="inverted menu">
             <div class="item" data-value="climbRateWidget">Climb Rate</div>
             <div class="item" data-value="absoluteAltitudeWidget">Absolute Height</div>
             <div class="item" data-value="relativeAltitudeWidget">Relative Height</div>
             <div class="item" data-value="altitudeHistoryWidget">History/Trend</div>
-            <div class="disabled divider"></div>
-            <div class="header">
-                <i class="compass icon"></i>
-                Gyro status
-            </div>
+        </div>
+    </div>
+    <div class="ui dropdown icon pointing item instrument-selection" >
+        Gyro status<i class="dropdown icon"></i>&nbsp;
+        <div class="inverted menu">
             <div class="item" data-value="attitudeWidget">Attitude (Roll/Pitch)</div>
             <div class="item" data-value="headingWidget">Heading (Yaw)</div>
-            <div class="disabled header">
-                <i class="bar chart icon"></i>
-                Motor
-            </div>
+        </div>
+    </div>
+    <div class="ui dropdown icon pointing item instrument-selection" >
+        Motor<i class="dropdown icon"></i>&nbsp;
+        <div class="inverted menu">
             <div class="item" data-value="currentMotorStatusWidget">Current Status (Bar)</div>
             <div class="item" data-value="motorStatusRadarWidget">Current Status (Radar)</div>
             <div class="item" data-value="motorStatusHistoryWidget">History</div>
-            <div class="divider"></div>
-            <div class="header">
-                <i class="medium battery icon"></i>
-                Energy
-            </div>
+        </div>
+    </div>
+    <div class="ui dropdown icon pointing item instrument-selection" >
+        Energy<i class="dropdown icon"></i>&nbsp;
+        <div class="inverted menu">
             <div class="disabled item">Battery status</div>
             <div class="disabled item">Power consumption</div>
             <div class="disabled item">Estimated flight time</div>
-            <div class="divider"></div>
-            <div class="header">
-                <i class="server icon"></i>
-                System
-            </div>
+        </div>
+    </div>
+    <div class="ui dropdown icon pointing item instrument-selection" >
+        System<i class="dropdown icon"></i>&nbsp;
+        <div class="inverted menu">
             <div class="item"  data-value="pidFrequencyWidget">PID frequency</div>
-            <div class="divider"></div>
         </div>
     </div>
     <div class="right menu" id="topBarRightMenu">
