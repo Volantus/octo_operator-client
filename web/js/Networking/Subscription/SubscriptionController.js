@@ -75,6 +75,7 @@ function SubscriptionsController()
 
                     $.each(subscriptionGroup, function (a, subscription) {
                         if (!subscription.provisioned) {
+                            subscription.provisioned = true;
                             subscription.topic.revision = topicStatus.revision - subscription.defaultOffset;
                         }
                     })

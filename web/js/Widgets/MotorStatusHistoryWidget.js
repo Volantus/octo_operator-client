@@ -124,7 +124,7 @@ function MotorStatusHistoryWidget()
             options: this.options
         });
 
-        this.subscriber = new Subscriber(MotorStatus.topic, 190, 'motorStatusHistoryWidget', this.handleMessage);
+        this.subscriber = new Subscriber(MotorStatus.topic, 100, 'motorStatusHistoryWidget', this.handleMessage);
         this.subscriber.register();
     };
 
@@ -158,7 +158,9 @@ function MotorStatusHistoryWidget()
                 widget.data.datasets[6].data.splice(0, 1);
                 widget.data.datasets[7].data.splice(0, 1);
             }
+        }
 
+        if (widget.counter > widget.maxDataPoints) {
             widget.chart.update();
         }
     };
