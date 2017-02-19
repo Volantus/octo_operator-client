@@ -1,0 +1,65 @@
+<div class="widget" id="ManualControlWidget">
+    <div class="ui inverted segment widget">
+        <div class="ui grey inverted top attached label">Manual motor control</div>
+        <div class="ui two column grid">
+            <div class="column">
+                <div class="fluid ui green labeled icon button"><i class="play icon"></i>Start motors</div>
+            </div>
+            <div class="column">
+                <div class="fluid ui red disabled labeled icon  button"><i class="stop icon"></i>Stop motors</div>
+            </div>
+        </div>
+        <h4 class="ui horizontal divider header">
+            <i class="compass icon"></i>
+            Gyro position
+        </h4>
+        <div class="ui three statistics">
+            <div class="ui inverted statistic">
+                <div class="value" id="motorControlYawValue">
+                    0
+                </div>
+                <div class="label">
+                    Yaw
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value" id="motorControlRollValue">
+                    0
+                </div>
+                <div class="label">
+                    Roll
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value" id="motorControlPitchValue">
+                    0
+                </div>
+                <div class="label">
+                    Pitch
+                </div>
+            </div>
+        </div>
+        <h4 class="ui horizontal divider header">
+            <i class="sort icon"></i>
+            Throttle
+        </h4>
+        <div class="ui two statistics">
+            <div class="ui inverted statistic">
+                <div class="value" id="motorControlHorThrottleValue">
+                    0.0 %
+                </div>
+                <div class="label">
+                    Hor. Throttle
+                </div>
+            </div>
+            <div class="ui inverted statistic">
+                <div class="value" id="motorControlVerThrottleValue">
+                    0.0 %
+                </div>
+                <div class="label">
+                    Vert. Throttle
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

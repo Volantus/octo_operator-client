@@ -165,3 +165,7 @@ body {
 #PidFrequencyWidget canvas {
     margin-top: 24px;
 }
+
+#ManualControlWidget .segment {
+    width: 376px;
+}

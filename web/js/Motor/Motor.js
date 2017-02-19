@@ -7,21 +7,6 @@
 function Motor(id, pin, power)
 {
     /**
-     * @type {number}
-     */
-    var MIN_POWER = 1000;
-
-    /**
-     * @type {number}
-     */
-    var MAX_POWER = 2000;
-
-    /**
-     * @type {number}
-     */
-    var POWER_RANGE = MAX_POWER -  MIN_POWER;
-
-    /**
      * @type {Number}
      */
     this.id = id;
@@ -41,6 +26,10 @@ function Motor(id, pin, power)
      */
     this.getPowerInPercent = function ()
     {
-        return ((power - MIN_POWER) / POWER_RANGE) * 100;
+        return ((power - Motor.MIN_POWER) / Motor.POWER_RANGE) * 100;
     }
 }
+
+Motor.MIN_POWER = 1000;
+Motor.MAX_POWER = 2000;
+Motor.POWER_RANGE = Motor.MAX_POWER - Motor.MIN_POWER;
