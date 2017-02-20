@@ -22,7 +22,7 @@ function MotorControlMessage(yaw, pitch, roll, horizontalThrottle, verticalThrot
     this.type = 'motorControl';
 
     /**
-     * @type {{desiredPosition: {yaw: float, pitch: float, roll: float}, horizontalThrottle: float, verticalThrottle: float, motorsStarted: bool}}
+     * @type {{desiredPosition: {yaw: number, pitch: number, roll: number}, horizontalThrottle: number, verticalThrottle: number, motorsStarted: boolean}}
      */
     this.data = {
         desiredPosition: {
