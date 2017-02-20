@@ -111,7 +111,7 @@ function PidFrequencyWidget()
         widget.data.labels.push(widget.counter);
         widget.data.datasets[0].data.push(message.current);
 
-        if (message.current > (message.desired * 1.05) || message.current < (message.desired * 0.95)) {
+        if (message.current > (message.desired * 1.00) || message.current < (message.desired * 0.90)) {
             widget.data.datasets[0].backgroundColor.push('rgba(255, 99, 0, 0.5)');
             widget.data.datasets[0].borderColor.push('rgba(255, 99, 0, 1)');
         } else {
