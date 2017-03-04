@@ -6,6 +6,11 @@ function app()
     this.TemplateRepository = undefined;
 
     /**
+     * @type {GamepadController}
+     */
+    this.GamepadController = undefined;
+
+    /**
      * @type {WidgetController}
      */
     this.WidgetController = undefined;
@@ -25,6 +30,9 @@ function app()
  * @param {string} authenticationKey
  */
 app.start = function (authenticationKey) {
+    this.GamepadController = new GamepadController();
+    this.GamepadController.init();
+
     this.TemplateRepository = new TemplateRepository();
     this.TemplateRepository.init();
 
