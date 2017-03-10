@@ -202,6 +202,7 @@ function ManualControlWidget()
             }
 
             if (gamePad.buttons[1].value > 0) {
+                this.motorControlMessage.data.desiredPosition.yaw = 0;
                 this.stopMotorsButton.click();
             }
 
@@ -210,7 +211,7 @@ function ManualControlWidget()
             this.changeThrottle('verticalThrottle', timeDelta * gamePad.buttons[5].value * this.gamepadSensivity.verticalThrottle);
             this.changeThrottle('verticalThrottle', -(timeDelta * gamePad.buttons[4].value * this.gamepadSensivity.verticalThrottle));
 
-            if (gamePad.axes[0] > 0.15 || gamePad.axes[0] < 0.15) {
+            if (gamePad.axes[0] > 0.05 || gamePad.axes[0] < 0.05) {
                 this.changeAngle('yaw', timeDelta * gamePad.axes[0] * this.gamepadSensivity.yaw);
             }
 
