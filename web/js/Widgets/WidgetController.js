@@ -48,6 +48,9 @@ function WidgetController()
         this.widgets[PidFrequencyWidget.id] = new PidFrequencyWidget();
         this.widgets[PidFrequencyWidget.id].loadTemplate();
 
+        this.widgets[PidTuningStatusWidget.id] = new PidTuningStatusWidget();
+        this.widgets[PidTuningStatusWidget.id].loadTemplate();
+
         this.selectionDropdown = $('.instrument-selection');
         this.selectionDropdown.dropdown({
             onChange: function (widgetId) {

@@ -169,3 +169,11 @@ body {
 #ManualControlWidget .segment {
     width: 376px;
 }
+
+#PidTuningStatusWidget {
+    width: 346px;
+}
+
+#PidTuningStatusWidget input {
+    background: rgb(199, 199, 199);
+}

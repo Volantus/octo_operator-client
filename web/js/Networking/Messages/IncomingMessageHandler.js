@@ -57,11 +57,15 @@ function IncomingMessageHandler()
                 message = new PidFrequencyStatus(topic, receivedAt, data.payload.desired, data.payload.current);
                 app.SubscriptionController.distributeTopicContainer(message);
                 break;
+            case 'pidTuningStatus':
+                message = new PidTuningStatusCollection(topic, receivedAt, this.buildPidTuningStatus(data.payload.yaw), this.buildPidTuningStatus(data.payload.roll), this.buildPidTuningStatus(data.payload.pitch));
+                app.SubscriptionController.distributeTopicContainer(message);
+                break;
         }
     };
 
     /**
-     * @param data
+     * @param {*} data
      * @returns {Motor[]}
      */
     this.buildMotors = function (data) 
@@ -78,5 +82,14 @@ function IncomingMessageHandler()
             new Motor(data[8].id, data[8].pin, data[8].power),
             new Motor(data[9].id, data[9].pin, data[9].power)
         ];
+    };
+
+    /**
+     * @param {*} data
+     * @returns {PidTuningStatus}
+     */
+    this.buildPidTuningStatus = function (data)
+    {
+        return new PidTuningStatus(data.Kp, data.Ki, data.Kd);
     }
 }
