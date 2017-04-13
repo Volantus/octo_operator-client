@@ -25,7 +25,7 @@ function MotorStatusHistoryWidget()
     /**
      * @type {number}
      */
-    this.maxDataPoints = 100;
+    this.maxDataPoints = 300;
 
     /**
      * @type {number}
@@ -124,7 +124,7 @@ function MotorStatusHistoryWidget()
             options: this.options
         });
 
-        this.subscriber = new Subscriber(MotorStatus.topic, 100, 'motorStatusHistoryWidget', this.handleMessage);
+        this.subscriber = new Subscriber(MotorStatus.topic, 300, 'motorStatusHistoryWidget', this.handleMessage);
         this.subscriber.register();
     };
 

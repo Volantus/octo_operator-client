@@ -25,7 +25,7 @@ function AltitudeHistoryWidget()
     /**
      * @type {number}
      */
-    this.maxDataPoints = 300;
+    this.maxDataPoints = 1500;
 
     /**
      * @type {{labels: Array, datasets: [*]}}
