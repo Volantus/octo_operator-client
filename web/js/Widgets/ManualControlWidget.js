@@ -58,8 +58,8 @@ function ManualControlWidget()
     this.gamepadSensivity = {
         horizontalThrottle: 0.05,
         verticalThrottle: 0.05,
-        pitch: 10,
-        roll: 10,
+        pitch: 25,
+        roll: 25,
         yaw: 25
     };
 
@@ -173,6 +173,11 @@ function ManualControlWidget()
         this.updated = true;
     };
 
+    this.setAngle = function (attribute, newAngle)
+    {
+        this.motorControlMessage.data.desiredPosition[attribute] = newAngle;
+        this.updated = true;
+    };
 
     this.refresh = function ()
     {
@@ -216,11 +221,11 @@ function ManualControlWidget()
             }
 
             if (gamePad.axes[2] > 0.05 || gamePad.axes[2] < 0.05) {
-                this.changeAngle('roll', timeDelta * gamePad.axes[2] * this.gamepadSensivity.roll);
+                this.setAngle('roll',  gamePad.axes[2] * this.gamepadSensivity.roll);
             }
 
             if (gamePad.axes[3] > 0.05 || gamePad.axes[3] < 0.05) {
-                this.changeAngle('pitch', timeDelta * gamePad.axes[3] * this.gamepadSensivity.pitch);
+                this.setAngle('pitch', gamePad.axes[3] * this.gamepadSensivity.pitch);
             }
         }
 
