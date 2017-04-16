@@ -58,8 +58,8 @@ function ManualControlWidget()
     this.gamepadSensivity = {
         horizontalThrottle: 0.05,
         verticalThrottle: 0.05,
-        pitch: 25,
-        roll: 25,
+        pitch: 15,
+        roll: 15,
         yaw: 25
     };
 
@@ -225,7 +225,7 @@ function ManualControlWidget()
             }
 
             if (gamePad.axes[3] > 0.05 || gamePad.axes[3] < 0.05) {
-                this.setAngle('pitch', gamePad.axes[3] * this.gamepadSensivity.pitch);
+                this.setAngle('pitch', -(gamePad.axes[3]) * this.gamepadSensivity.pitch);
             }
         }
 
