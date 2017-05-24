@@ -1,4 +1,0 @@
-services:
-  controller.ui.dashboard:
-    class: Volante\SkyBukkit\Monitor\Src\Controller\UI\DashboardController
-    arguments: ["@templating"]

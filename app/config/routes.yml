@@ -1,3 +1,0 @@
-init:
-    path: /
-    defaults: { _controller: controller.ui.dashboard:init }
