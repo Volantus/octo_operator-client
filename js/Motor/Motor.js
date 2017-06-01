@@ -26,7 +26,7 @@ function Motor(id, pin, power)
      */
     this.getPowerInPercent = function ()
     {
-        return ((power - Motor.MIN_POWER) / Motor.POWER_RANGE) * 100;
+        return this.power * 100;
     }
 }
 
