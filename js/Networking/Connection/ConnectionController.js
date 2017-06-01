@@ -32,7 +32,7 @@ function ConnectionController(authenticationKey)
     /**
      * @type {string}
      */
-    this.localAddress = '192.168.178.73';
+    this.localAddress = '192.168.1.104';
 
     /**
      * @type {IncomingMessageHandler}
@@ -62,7 +62,7 @@ function ConnectionController(authenticationKey)
         this.topBar = $('#topBarRightMenu');
         this.topBarMessagesOutCounter = $('#messagesOutCounter');
         this.topBarMessagesInCounter = $('#messagesInCounter');
-        this.connect(Connection.roles.localRelayServer, 'ws://' + this.localAddress + ':9000');
+        this.connect(Connection.roles.localRelayServer, 'ws://' + this.localAddress + ':5001');
         this.connect(Connection.roles.remoteRelayServer, 'ws://' + this.remoteAddress + ':17468');
 
         setInterval(function () {
