@@ -3,6 +3,11 @@ function AltitudeHistoryWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = AltitudeHistoryWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

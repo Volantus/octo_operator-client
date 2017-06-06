@@ -3,6 +3,11 @@ function MotorStatusRadarWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = MotorStatusRadarWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

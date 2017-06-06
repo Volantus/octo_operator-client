@@ -10,6 +10,11 @@ function WidgetController()
      */
     this.widgets = {};
 
+    /**
+     * @type {WidgetConfiguration}
+     */
+    this.currentConfig = new WidgetConfiguration('Unnamed', []);
+
     this.init = function ()
     {
         this.widgets[MapWidget.id] = new MapWidget();
@@ -61,9 +66,18 @@ function WidgetController()
                     widget.show();
                     widget.init();
                     widget.active = true;
+                    app.WidgetController.currentConfig.add(widgetId);
                     console.log('[WidgetController] Finished initializing ' + widgetId + ' widget!');
                 }
             }
         });
+    };
+
+    /**
+     * @param {AbstractWidget} widget
+     */
+    this.onTearDown = function (widget)
+    {
+        this.currentConfig.remove(widget.id);
     }
 }

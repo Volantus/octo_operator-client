@@ -3,6 +3,11 @@ function PidTuningStatusWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = PidTuningStatusWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

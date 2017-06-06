@@ -3,6 +3,11 @@ function MapWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = MapWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

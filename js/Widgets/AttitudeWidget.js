@@ -3,6 +3,11 @@ function AttitudeWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = AbsoluteAltitudeWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

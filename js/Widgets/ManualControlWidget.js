@@ -5,6 +5,11 @@ function ManualControlWidget()
     /**
      * @type {string}
      */
+    this.id = ManualControlWidget.id;
+
+    /**
+     * @type {string}
+     */
     this.templateId = 'manualControlWidget';
 
     /**

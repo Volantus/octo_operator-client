@@ -3,6 +3,11 @@ function PidFrequencyWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = PidFrequencyWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

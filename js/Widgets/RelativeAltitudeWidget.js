@@ -3,6 +3,11 @@ function RelativeAltitudeWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = RelativeAltitudeWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

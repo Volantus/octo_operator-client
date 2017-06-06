@@ -3,6 +3,11 @@ function HeadingWidget()
     AbstractWidget.call(this);
 
     /**
+     * @type {string}
+     */
+    this.id = HeadingWidget.id;
+
+    /**
      * @type {Subscriber}
      */
     this.subscriber = undefined;

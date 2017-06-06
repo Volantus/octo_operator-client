@@ -6,6 +6,11 @@ function app()
     this.TemplateRepository = undefined;
 
     /**
+     * @type {ConfigurationController}
+     */
+    this.ConfigurationController = undefined;
+
+    /**
      * @type {GamepadController}
      */
     this.GamepadController = undefined;
@@ -29,7 +34,8 @@ function app()
 /**
  * @param {string} authenticationKey
  */
-app.start = function (authenticationKey) {
+app.start = function (authenticationKey)
+{
     this.GamepadController = new GamepadController();
     this.GamepadController.init();
 
@@ -38,6 +44,9 @@ app.start = function (authenticationKey) {
 
     this.WidgetController = new WidgetController();
     this.WidgetController.init();
+
+    this.ConfigurationController = new ConfigurationController();
+    this.ConfigurationController.init();
 
     this.SubscriptionController = new SubscriptionsController();
 

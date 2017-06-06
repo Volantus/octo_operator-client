@@ -1,6 +1,11 @@
 function AbstractWidget()
 {
     /**
+     * @type {string}
+     */
+    this.id = 'undefinedWidgetId';
+
+    /**
      * @type {boolean}
      */
     this.active = false;
@@ -33,6 +38,7 @@ function AbstractWidget()
     this.tearDown = function ()
     {
         this.active = false;
+        app.WidgetController.onTearDown(this);
     };
 
     this.loadTemplate = function ()
