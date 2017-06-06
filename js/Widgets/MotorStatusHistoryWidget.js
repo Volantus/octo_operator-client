@@ -177,6 +177,8 @@ function MotorStatusHistoryWidget()
 
     this.tearDown = function ()
     {
+        this.data.labels = [];
+        this.data.datasets = [];
         this.subscriber.unregister();
     };
 }
