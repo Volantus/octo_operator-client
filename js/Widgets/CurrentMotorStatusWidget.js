@@ -18,6 +18,11 @@ function CurrentMotorStatusWidget()
     this.templateId = 'currentMotorStatusWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'CurrentMotorStatusWidget';
+
+    /**
      * @type {Chart}
      */
     this.chart = undefined;

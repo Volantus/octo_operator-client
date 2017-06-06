@@ -18,6 +18,11 @@ function AltitudeHistoryWidget()
     this.templateId = 'altitudeHistoryWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'AltitudeHistoryWidget';
+
+    /**
      * @type {Chart}
      */
     this.chart = undefined;

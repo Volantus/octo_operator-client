@@ -18,7 +18,7 @@ function AbstractWidget()
     /**
      * @type {string}
      */
-    this.segmentId = 'MapWidget';
+    this.segmentId = undefined;
 
     /**
      * @type {string}
@@ -35,10 +35,16 @@ function AbstractWidget()
         this.active = true;
     };
 
-    this.tearDown = function ()
+    this.close = function ()
     {
+        this.tearDown();
+        this.segment.remove();
         this.active = false;
         app.WidgetController.onTearDown(this);
+    };
+
+    this.tearDown = function ()
+    {
     };
 
     this.loadTemplate = function ()

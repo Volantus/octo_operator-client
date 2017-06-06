@@ -18,6 +18,12 @@ function ClimbRateWidget()
     this.templateId = 'climbRateWidget';
 
     /**
+     *
+     * @type {string}
+     */
+    this.segmentId = 'ClimbRateWidget';
+
+    /**
      * @type {*}
      */
     this.value = undefined;

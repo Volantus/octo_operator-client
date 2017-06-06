@@ -18,6 +18,11 @@ function PidTuningStatusWidget()
     this.templateId = 'pidTuningWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'PidTuningStatusWidget';
+
+    /**
      * @type {*}
      */
     this.instrument = undefined;

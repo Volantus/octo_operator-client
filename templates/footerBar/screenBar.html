@@ -1,0 +1,20 @@
+<div class="ui dropdown icon pointing item save-screen">
+    <i class="add icon"></i>
+    <div class="inverted menu">
+        <div class="ui icon input">
+            <i class="edit icon"></i>
+            <input id="screenNameInput" type="text" placeholder="Screen name" value="{{activeScreenName}}">
+        </div>
+        <div class="divider"></div>
+        <div class="item" onclick="app.WidgetController.saveCurrentScreen();">
+            <i class="checkmark icon"></i>
+            Save screen
+        </div>
+    </div>
+</div>
+{{#screens}}
+<a class="{{#active}}active{{/active}} item">
+    <i class="desktop icon"></i>
+    <b>{{name}}</b>
+</a>
+{{/screens}}

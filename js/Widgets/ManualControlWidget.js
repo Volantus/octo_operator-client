@@ -13,6 +13,11 @@ function ManualControlWidget()
     this.templateId = 'manualControlWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'ManualControlWidget';
+
+    /**
      * @type {*}
      */
     this.startMotorsButton = undefined;

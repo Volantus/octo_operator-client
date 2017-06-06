@@ -18,6 +18,11 @@ function AbsoluteAltitudeWidget()
     this.templateId = 'absoluteAltitudeWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'AbsoluteAltitudeWidget';
+
+    /**
      * @type {*}
      */
     this.value = undefined;

@@ -18,6 +18,11 @@ function HeadingWidget()
     this.templateId = 'headingWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'HeadingWidget';
+
+    /**
      * @type {*}
      */
     this.instrument = undefined;

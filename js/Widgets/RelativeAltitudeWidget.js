@@ -15,7 +15,12 @@ function RelativeAltitudeWidget()
     /**
      * @type {string}
      */
-    this.templateId = 'relativeAltitudeWidget';
+    this.templateId = 'RelativeAltitudeWidget';
+
+    /**
+     * @type {string}
+     */
+    this.segmentId = undefined;
 
     /**
      * @type {*}

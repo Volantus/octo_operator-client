@@ -8,5 +8,6 @@ function ConfigurationController()
     this.init = function ()
     {
         this.widgets = new WidgetConfigurationRepository();
+        this.widgets.init();
     }
 }

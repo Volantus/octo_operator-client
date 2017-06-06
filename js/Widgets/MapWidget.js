@@ -18,6 +18,11 @@ function MapWidget()
     this.templateId = 'mapWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'MapWidgetColumn';
+
+    /**
      * @type {ol.Map}
      */
     this.map = undefined;
@@ -49,7 +54,7 @@ function MapWidget()
             view: new ol.View({
                 zoom: 16
             }),
-            target: this.segmentId
+            target: 'MapWidget'
         });
         this.initPolygonLayer();
         this.initMarkerLayer();

@@ -6,6 +6,16 @@ function WidgetController()
     this.selectionDropdown = undefined;
 
     /**
+     * @type {Object}
+     */
+    this.saveScreenDropdown = undefined;
+
+    /**
+     * @type {Object}
+     */
+    this.footerBar = undefined;
+
+    /**
      * @type {Array}
      */
     this.widgets = {};
@@ -13,7 +23,17 @@ function WidgetController()
     /**
      * @type {WidgetConfiguration}
      */
-    this.currentConfig = new WidgetConfiguration('Unnamed', []);
+    this.draftConfig = new WidgetConfiguration('Unnamed', []);
+
+    /**
+     * @type {string}
+     */
+    this.activeScreenName = 'Individual draft';
+
+    /**
+     * @type {boolean}
+     */
+    this.draftActive = true;
 
     this.init = function ()
     {
@@ -59,18 +79,113 @@ function WidgetController()
         this.selectionDropdown = $('.instrument-selection');
         this.selectionDropdown.dropdown({
             onChange: function (widgetId) {
-                var widget = app.WidgetController.widgets[widgetId];
-
-                if (!widget.active) {
-                    console.log('[WidgetController] Initializing ' + widgetId + ' widget ...');
-                    widget.show();
-                    widget.init();
-                    widget.active = true;
-                    app.WidgetController.currentConfig.add(widgetId);
-                    console.log('[WidgetController] Finished initializing ' + widgetId + ' widget!');
-                }
+                app.WidgetController.showWidget(widgetId);
             }
         });
+
+        this.footerBar = $('#fixedFooter');
+        this.renderScreenMenu('Individual draft');
+    };
+
+    /**
+     * @param {string} widgetId
+     */
+    this.showWidget = function (widgetId)
+    {
+        var widget = app.WidgetController.widgets[widgetId];
+
+        if (!widget.active) {
+            console.log('[WidgetController] Initializing ' + widgetId + ' widget ...');
+            widget.show();
+            widget.init();
+            widget.active = true;
+
+            if (app.WidgetController.draftActive) {
+                app.WidgetController.draftConfig.add(widgetId);
+            } else {
+                var widgetConfig = app.ConfigurationController.widgets.getByName(app.WidgetController.activeScreenName);
+                widgetConfig.add(widgetId);
+                app.ConfigurationController.widgets.save(widgetConfig);
+            }
+
+            console.log('[WidgetController] Finished initializing ' + widgetId + ' widget!');
+        }
+    };
+
+    this.saveCurrentScreen = function ()
+    {
+        var screenName = $('#screenNameInput').val();
+        this.draftConfig.name = screenName;
+        app.ConfigurationController.widgets.save(this.draftConfig);
+        this.draftConfig = new WidgetConfiguration('Unnamed', []);
+
+        this.renderScreenMenu(screenName);
+    };
+
+    /**
+     * @param {string} activeScreenName
+     */
+    this.renderScreenMenu = function (activeScreenName)
+    {
+        var widgetController = app.WidgetController;
+        widgetController.draftActive = activeScreenName === 'Individual draft';
+        var availableNames = app.ConfigurationController.widgets.getAvailable();
+        availableNames.unshift('Individual draft');
+        var screens = [];
+
+        $.each(availableNames, function (i, name) {
+            screens.push({
+                name: name,
+                active: name === activeScreenName
+            })
+        });
+
+        app.TemplateRepository.get('footerBar/screenBar', function (template) {
+            widgetController.footerBar.html(Mustache.render(template, {
+                draft: widgetController.draftActive,
+                activeScreenName: widgetController.draftActive ? '' : activeScreenName,
+                screens: screens
+            }));
+
+            widgetController.footerBar.find('a.item').each(function (screenIndex) {
+                var screenName = availableNames[screenIndex];
+                if (screenName !== activeScreenName) {
+                    $(this).click(function () {
+                        widgetController.loadScreen(screenName);
+                    })
+                }
+            });
+
+            widgetController.saveScreenDropdown = $('.save-screen.dropdown');
+            widgetController.saveScreenDropdown.dropdown();
+        });
+    };
+
+    /**
+     * @param {string} name
+     */
+    this.loadScreen = function (name)
+    {
+        this.closeCurrentWidgets();
+        app.WidgetController.activeScreenName = name;
+
+        if (name !== 'Individual draft') {
+            var widgetConfig = app.ConfigurationController.widgets.getByName(name);
+
+            $.each(widgetConfig.widgetsIds, function (i, widgetId) {
+                app.WidgetController.showWidget(widgetId);
+            });
+        }
+        this.renderScreenMenu(name);
+    };
+
+    this.closeCurrentWidgets = function ()
+    {
+        $.each(app.WidgetController.widgets, function (i, widget) {
+            if (widget.active) {
+                widget.close();
+            }
+        })
     };
 
     /**
@@ -78,6 +193,6 @@ function WidgetController()
      */
     this.onTearDown = function (widget)
     {
-        this.currentConfig.remove(widget.id);
+        this.draftConfig.remove(widget.id);
     }
 }

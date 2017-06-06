@@ -9,7 +9,8 @@ function TemplateRepository()
      * @type {string[]}
      */
     this.preloaded = [
-        'statusBar/connectionStatus'
+        'statusBar/connectionStatus',
+        'footerBar/screenBar'
     ];
 
     this.init = function ()

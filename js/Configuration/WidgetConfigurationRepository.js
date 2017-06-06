@@ -1,5 +1,12 @@
 function WidgetConfigurationRepository()
 {
+    this.init = function ()
+    {
+        if (this.getAvailable() === null) {
+            LocalConfigStorage.setItem('availableWidgetConfigurations', []);
+        }
+    };
+
     /**
      * @return {array}
      */
@@ -26,7 +33,9 @@ function WidgetConfigurationRepository()
         LocalConfigStorage.setItem('widgetConfiguration-' + widgetConfig.name, widgetConfig.widgetsIds);
 
         var availableNames = this.getAvailable();
-        availableNames.push(widgetConfig.name);
-        LocalConfigStorage.setItem('availableWidgetConfigurations', availableNames);
+        if (availableNames.indexOf(widgetConfig.name) === -1) {
+            availableNames.push(widgetConfig.name);
+            LocalConfigStorage.setItem('availableWidgetConfigurations', availableNames);
+        }
     }
 }

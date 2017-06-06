@@ -150,6 +150,27 @@
         </div>
     </div>
 </div>
+<div class="ui small fixed inverted menu" id="fixedFooter">
+    <div class="ui dropdown icon pointing item save-screen">
+        <i class="add icon"></i>
+        <div class="inverted menu">
+            <div class="ui icon input">
+                <i class="edit icon"></i>
+                <input id="screenNameInput" type="text" placeholder="Screen name">
+            </div>
+            <div class="divider"></div>
+            <div class="item" onclick="app.WidgetController.saveCurrentScreen();">
+                <i class="checkmark icon"></i>
+                Save screen
+            </div>
+        </div>
+    </div>
+    <div class="active item">
+        <i class="desktop icon"></i>
+        Individual draft
+    </div>
+</div>
+
 <div id="ContentGrid">
 </div>
 </body>

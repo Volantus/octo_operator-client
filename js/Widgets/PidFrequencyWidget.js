@@ -18,6 +18,11 @@ function PidFrequencyWidget()
     this.templateId = 'pidFrequencyWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'PidFrequencyWidget';
+
+    /**
      * @type {Chart}
      */
     this.chart = undefined;

@@ -18,6 +18,11 @@ function AttitudeWidget()
     this.templateId = 'attitudeWidget';
 
     /**
+     * @type {string}
+     */
+    this.segmentId = 'AttitudeWidget';
+
+    /**
      * @type {*}
      */
     this.instrument = undefined;

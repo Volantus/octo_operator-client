@@ -93,7 +93,7 @@ body {
 }
 
 #ContentGrid {
-    margin-top: 21px;
+    margin-top: 33px;
     padding-top: 47px;
     height: 100%;
 }
@@ -140,9 +140,9 @@ body {
 }
 
 .widget {
-    margin-top: 21px;
+    margin-bottom: 35px;
     float: left;
-    margin-left: 32px;
+    margin-left: 35px;
 }
 
 #CurrentMotorStatusWidget {
@@ -160,6 +160,7 @@ body {
 
 #MotorStatusRadarWidget .segment {
     padding-top: 35px;
+    height: 444px;
 }
 
 #PidFrequencyWidget canvas {
@@ -168,6 +169,7 @@ body {
 
 #ManualControlWidget .segment {
     width: 376px;
+    height: 436px;
 }
 
 #PidTuningStatusWidget {
@@ -176,4 +178,9 @@ body {
 
 #PidTuningStatusWidget input {
     background: rgb(199, 199, 199);
+}
+
+#fixedFooter {
+    bottom: 0;
+    top: inherit;
 }

@@ -42,11 +42,11 @@ app.start = function (authenticationKey)
     this.TemplateRepository = new TemplateRepository();
     this.TemplateRepository.init();
 
-    this.WidgetController = new WidgetController();
-    this.WidgetController.init();
-
     this.ConfigurationController = new ConfigurationController();
     this.ConfigurationController.init();
+
+    this.WidgetController = new WidgetController();
+    this.WidgetController.init();
 
     this.SubscriptionController = new SubscriptionsController();
 
