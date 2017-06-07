@@ -6,16 +6,6 @@ function WidgetController()
     this.selectionDropdown = undefined;
 
     /**
-     * @type {Object}
-     */
-    this.saveScreenDropdown = undefined;
-
-    /**
-     * @type {Object}
-     */
-    this.footerBar = undefined;
-
-    /**
      * @type {Array}
      */
     this.widgets = {};
@@ -24,16 +14,6 @@ function WidgetController()
      * @type {WidgetConfiguration}
      */
     this.draftConfig = new WidgetConfiguration('Unnamed', []);
-
-    /**
-     * @type {string}
-     */
-    this.activeScreenName = 'Individual draft';
-
-    /**
-     * @type {boolean}
-     */
-    this.draftActive = true;
 
     this.init = function ()
     {
@@ -83,7 +63,6 @@ function WidgetController()
             }
         });
 
-        this.footerBar = $('#fixedFooter');
         this.renderScreenMenu('Individual draft');
     };
 
@@ -100,7 +79,7 @@ function WidgetController()
             widget.init();
             widget.active = true;
 
-            if (app.WidgetController.draftActive) {
+            if (app.FooterBarController.draftScreenActive) {
                 app.WidgetController.draftConfig.add(widgetId);
             } else {
                 var widgetConfig = app.ConfigurationController.widgets.getByName(app.WidgetController.activeScreenName);
@@ -127,8 +106,11 @@ function WidgetController()
      */
     this.renderScreenMenu = function (activeScreenName)
     {
-        var widgetController = app.WidgetController;
-        widgetController.draftActive = activeScreenName === 'Individual draft';
+        var footerBarController = app.FooterBarController;
+
+        footerBarController.draftScreenActive = activeScreenName === 'Individual draft';
+        footerBarController.activeScreenName = activeScreenName;
+
         var availableNames = app.ConfigurationController.widgets.getAvailable();
         availableNames.unshift('Individual draft');
         var screens = [];
@@ -140,25 +122,8 @@ function WidgetController()
             })
         });
 
-        app.TemplateRepository.get('footerBar/screenBar', function (template) {
-            widgetController.footerBar.html(Mustache.render(template, {
-                draft: widgetController.draftActive,
-                activeScreenName: widgetController.draftActive ? '' : activeScreenName,
-                screens: screens
-            }));
-
-            widgetController.footerBar.find('a.item').each(function (screenIndex) {
-                var screenName = availableNames[screenIndex];
-                if (screenName !== activeScreenName) {
-                    $(this).click(function () {
-                        widgetController.loadScreen(screenName);
-                    })
-                }
-            });
-
-            widgetController.saveScreenDropdown = $('.save-screen.dropdown');
-            widgetController.saveScreenDropdown.dropdown();
-        });
+        app.FooterBarController.screenConfigs = screens;
+        app.FooterBarController.render();
     };
 
     /**

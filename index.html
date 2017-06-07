@@ -19,6 +19,7 @@
     <script src="/js/AbstractController.js"></script>
     <script src="/js/TemplateRepository.js"></script>
     <script src="/js/General/GamePadController.js"></script>
+    <script src="/js/General/FooterBarController.js"></script>
     <script src="/js/Widgets/WidgetController.js"></script>
     <script src="/js/Widgets/AbstractWidget.js"></script>
     <script src="/js/Widgets/MapWidget.js"></script>
@@ -154,21 +155,15 @@
 <div class="ui small fixed inverted menu" id="fixedFooter">
     <div class="ui dropdown icon pointing item save-screen">
         <i class="add icon"></i>
-        <div class="inverted menu">
-            <div class="ui icon input">
-                <i class="edit icon"></i>
-                <input id="screenNameInput" type="text" placeholder="Screen name">
-            </div>
-            <div class="divider"></div>
-            <div class="item" onclick="app.WidgetController.saveCurrentScreen();">
-                <i class="checkmark icon"></i>
-                Save screen
-            </div>
-        </div>
     </div>
     <div class="active item">
         <i class="desktop icon"></i>
         Individual draft
+    </div>
+    <div class="right menu">
+        <div class="ui dropdown icon pointing item network-config">
+            <i class="setting icon"></i>
+        </div>
     </div>
 </div>
 

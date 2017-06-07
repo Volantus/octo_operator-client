@@ -10,7 +10,7 @@ function TemplateRepository()
      */
     this.preloaded = [
         'statusBar/connectionStatus',
-        'footerBar/screenBar'
+        'footerBar/footerBar'
     ];
 
     this.init = function ()

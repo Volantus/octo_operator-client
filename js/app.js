@@ -11,6 +11,11 @@ function app()
     this.ConfigurationController = undefined;
 
     /**
+     * @type {FooterBarController}
+     */
+    this.FooterBarController = undefined;
+
+    /**
      * @type {GamepadController}
      */
     this.GamepadController = undefined;
@@ -41,6 +46,9 @@ app.start = function ()
 
     this.ConfigurationController = new ConfigurationController();
     this.ConfigurationController.init();
+
+    this.FooterBarController = new FooterBarController();
+    this.FooterBarController.init();
 
     this.WidgetController = new WidgetController();
     this.WidgetController.init();
