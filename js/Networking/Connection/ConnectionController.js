@@ -2,12 +2,12 @@
  * @param {string} authenticationKey
  * @constructor
  */
-function ConnectionController(authenticationKey)
+function ConnectionController()
 {
     /**
      * @type {string}
      */
-    this.authenticationKey = authenticationKey;
+    this.authenticationKey = undefined;
 
     /**
      * @type {Connection[]}
@@ -27,12 +27,12 @@ function ConnectionController(authenticationKey)
     /**
      * @type {string}
      */
-    this.remoteAddress = '5.9.41.227';
+    this.remoteAddress = undefined;
 
     /**
      * @type {string}
      */
-    this.localAddress = '127.0.0.1';
+    this.localAddress = undefined;
 
     /**
      * @type {IncomingMessageHandler}
@@ -62,8 +62,13 @@ function ConnectionController(authenticationKey)
         this.topBar = $('#topBarRightMenu');
         this.topBarMessagesOutCounter = $('#messagesOutCounter');
         this.topBarMessagesInCounter = $('#messagesInCounter');
-        this.connect(Connection.roles.localRelayServer, 'ws://' + this.localAddress + ':5001');
-        this.connect(Connection.roles.remoteRelayServer, 'ws://' + this.remoteAddress + ':17468');
+
+        this.authenticationKey = app.ConfigurationController.network.getAuthToken();
+        this.localAddress = app.ConfigurationController.network.getRelayServerA();
+        this.remoteAddress = app.ConfigurationController.network.getRelayServerB();
+
+        this.connect(Connection.roles.localRelayServer, 'ws://' + this.localAddress);
+        this.connect(Connection.roles.remoteRelayServer, 'ws://' + this.remoteAddress);
 
         setInterval(function () {
             app.ConnectionController.refreshCounterBar();

@@ -31,10 +31,7 @@ function app()
     this.ConnectionController = undefined;
 }
 
-/**
- * @param {string} authenticationKey
- */
-app.start = function (authenticationKey)
+app.start = function ()
 {
     this.GamepadController = new GamepadController();
     this.GamepadController.init();
@@ -50,6 +47,6 @@ app.start = function (authenticationKey)
 
     this.SubscriptionController = new SubscriptionsController();
 
-    this.ConnectionController = new ConnectionController(authenticationKey);
+    this.ConnectionController = new ConnectionController();
     this.ConnectionController.init();
 };
