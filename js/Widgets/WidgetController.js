@@ -15,6 +15,11 @@ function WidgetController()
      */
     this.draftConfig = new WidgetConfiguration('Unnamed', []);
 
+    /**
+     * @type {boolean}
+     */
+    this.screenSwitchInProgress = false;
+
     this.init = function ()
     {
         this.widgets[MapWidget.id] = new MapWidget();
@@ -77,12 +82,15 @@ function WidgetController()
             widget.init();
             widget.active = true;
 
-            if (app.FooterBarController.draftScreenActive) {
-                app.WidgetController.draftConfig.add(widgetId);
-            } else {
-                var widgetConfig = app.ConfigurationController.widgets.getByName(app.WidgetController.activeScreenName);
-                widgetConfig.add(widgetId);
-                app.ConfigurationController.widgets.save(widgetConfig);
+            if (!this.screenSwitchInProgress) {
+                if (app.FooterBarController.draftScreenActive) {
+                    app.WidgetController.draftConfig.add(widgetId);
+                } else {
+                    console.log(app.WidgetController.activeScreenName);
+                    var widgetConfig = app.ConfigurationController.widgets.getByName(app.FooterBarController.activeScreenName);
+                    widgetConfig.add(widgetId);
+                    app.ConfigurationController.widgets.save(widgetConfig);
+                }
             }
 
             console.log('[WidgetController] Finished initializing ' + widgetId + ' widget!');
@@ -94,6 +102,7 @@ function WidgetController()
      */
     this.loadScreen = function (name)
     {
+        this.screenSwitchInProgress = true;
         this.closeCurrentWidgets();
         app.FooterBarController.activeScreenName = name;
 
@@ -105,7 +114,9 @@ function WidgetController()
             });
         }
 
-        app.FooterBarController.render();
+        app.FooterBarController.render(function () {
+            app.WidgetController.screenSwitchInProgress = false;
+        });
     };
 
     this.closeCurrentWidgets = function ()
@@ -122,6 +133,14 @@ function WidgetController()
      */
     this.onTearDown = function (widget)
     {
-        this.draftConfig.remove(widget.id);
+        if (!this.screenSwitchInProgress) {
+            if (app.FooterBarController.draftScreenActive) {
+                app.WidgetController.draftConfig.remove(widget.id);
+            } else {
+                var widgetConfig = app.ConfigurationController.widgets.getByName(app.FooterBarController.activeScreenName);
+                widgetConfig.remove(widget.id);
+                app.ConfigurationController.widgets.save(widgetConfig);
+            }
+        }
     }
 }

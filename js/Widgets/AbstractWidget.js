@@ -57,7 +57,11 @@ function AbstractWidget()
 
     this.show = function ()
     {
+        var widget = this;
         $('#ContentGrid').append(this.template);
         this.segment = $('#' + this.segmentId);
+        this.segment.find('.top.attached.label').click(function () {
+            widget.close();
+        })
     }
 }

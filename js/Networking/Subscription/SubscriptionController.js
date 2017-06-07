@@ -50,7 +50,12 @@ function SubscriptionsController()
 
     this.refreshSubscriptions = function ()
     {
-        app.ConnectionController.sendData(JSON.stringify(new RequestTopicStatusMessage()));
+        try {
+            app.ConnectionController.sendData(JSON.stringify(new RequestTopicStatusMessage()));
+        } catch (e) {
+            console.log('Refreshing subscriptions failed');
+            console.log(e);
+        }
     };
 
     /**
