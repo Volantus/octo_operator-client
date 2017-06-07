@@ -44,7 +44,7 @@ function NetworkConfigurationRepository()
      */
     this.setRelayServerA = function (address)
     {
-        LocalConfigStorage.setItem('relayServerB', address);
+        LocalConfigStorage.setItem('relayServerA', address);
     };
 
     /**

@@ -62,8 +62,6 @@ function WidgetController()
                 app.WidgetController.showWidget(widgetId);
             }
         });
-
-        this.renderScreenMenu('Individual draft');
     };
 
     /**
@@ -91,48 +89,13 @@ function WidgetController()
         }
     };
 
-    this.saveCurrentScreen = function ()
-    {
-        var screenName = $('#screenNameInput').val();
-        this.draftConfig.name = screenName;
-        app.ConfigurationController.widgets.save(this.draftConfig);
-        this.draftConfig = new WidgetConfiguration('Unnamed', []);
-
-        this.renderScreenMenu(screenName);
-    };
-
-    /**
-     * @param {string} activeScreenName
-     */
-    this.renderScreenMenu = function (activeScreenName)
-    {
-        var footerBarController = app.FooterBarController;
-
-        footerBarController.draftScreenActive = activeScreenName === 'Individual draft';
-        footerBarController.activeScreenName = activeScreenName;
-
-        var availableNames = app.ConfigurationController.widgets.getAvailable();
-        availableNames.unshift('Individual draft');
-        var screens = [];
-
-        $.each(availableNames, function (i, name) {
-            screens.push({
-                name: name,
-                active: name === activeScreenName
-            })
-        });
-
-        app.FooterBarController.screenConfigs = screens;
-        app.FooterBarController.render();
-    };
-
     /**
      * @param {string} name
      */
     this.loadScreen = function (name)
     {
         this.closeCurrentWidgets();
-        app.WidgetController.activeScreenName = name;
+        app.FooterBarController.activeScreenName = name;
 
         if (name !== 'Individual draft') {
             var widgetConfig = app.ConfigurationController.widgets.getByName(name);
@@ -141,7 +104,8 @@ function WidgetController()
                 app.WidgetController.showWidget(widgetId);
             });
         }
-        this.renderScreenMenu(name);
+
+        app.FooterBarController.render();
     };
 
     this.closeCurrentWidgets = function ()

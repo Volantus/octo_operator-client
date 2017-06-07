@@ -6,7 +6,7 @@
             <input id="screenNameInput" type="text" placeholder="Screen name" value="{{activeScreenName}}">
         </div>
         <div class="divider"></div>
-        <div class="item" onclick="app.WidgetController.saveCurrentScreen();">
+        <div class="item" onclick="app.FooterBarController.saveCurrentScreen();">
             <i class="checkmark icon"></i>
             Save screen
         </div>
@@ -28,7 +28,28 @@
             </div>
             <div class="ui icon input">
                 <i class="key icon"></i>
-                <input id="authTokenInput" type="password" placeholder="Secret token">
+                <input class="authTokenInput" type="password" placeholder="Secret token" value="{{authToken}}">
+            </div>
+            <div class="header">
+                <i class="server icon"></i>
+                Relay server A
+            </div>
+            <div class="ui icon input">
+                <i class="server icon"></i>
+                <input class="relayServerAInput" type="text" placeholder="<ip-address>:<port>" value="{{relayServerA}}">
+            </div>
+            <div class="header">
+                <i class="server icon"></i>
+                Relay server B
+            </div>
+            <div class="ui icon input">
+                <i class="server icon"></i>
+                <input class="relayServerBInput" type="text" placeholder="<ip-address>:<port>" value="{{relayServerB}}">
+            </div>
+            <div class="divider"></div>
+            <div class="item" onclick="app.FooterBarController.saveNetworkConfig();">
+                <i class="checkmark icon"></i>
+                Save configuration
             </div>
         </div>
     </div>
