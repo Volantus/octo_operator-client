@@ -116,7 +116,7 @@ function ManualControlWidget()
 
         this.refreshInteval = setInterval(function () {
             widget.refresh();
-        }, 100);
+        }, 20);
 
         $(document).bind('keydown', '1', function () {
             widget.changeThrottle('horizontalThrottle', -0.01);
@@ -173,6 +173,12 @@ function ManualControlWidget()
         this.updated = true;
     };
 
+    this.setThrottle = function (attribute, newThrottle)
+    {
+        this.motorControlMessage.data[attribute] = newThrottle;
+        this.updated = true;
+    };
+
     this.changeAngle = function (attribute, delta)
     {
         var newAngle = this.motorControlMessage.data.desiredPosition[attribute] + delta;
@@ -212,31 +218,22 @@ function ManualControlWidget()
         if (this.lastGamePadScan !== undefined) {
             var timeDelta = (performance.now() - this.lastGamePadScan) / 1000;
 
-            if (gamePad.buttons[0].value > 0) {
+            if (gamePad.buttons[1].value > 0) {
                 this.startMotorsButton.click();
             }
 
-            if (gamePad.buttons[1].value > 0) {
+            if (gamePad.buttons[3].value > 0) {
                 this.motorControlMessage.data.desiredPosition.yaw = 0;
                 this.stopMotorsButton.click();
             }
 
-            this.changeThrottle('horizontalThrottle', timeDelta * gamePad.buttons[7].value * this.gamepadSensivity.horizontalThrottle);
-            this.changeThrottle('horizontalThrottle', -(timeDelta * gamePad.buttons[6].value * this.gamepadSensivity.horizontalThrottle));
-            this.changeThrottle('verticalThrottle', timeDelta * gamePad.buttons[5].value * this.gamepadSensivity.verticalThrottle);
-            this.changeThrottle('verticalThrottle', -(timeDelta * gamePad.buttons[4].value * this.gamepadSensivity.verticalThrottle));
+            var horizontalThrottle = (((gamePad.axes[2] * -1) + 1) / 2);
+            this.setThrottle('horizontalThrottle', horizontalThrottle);
+            this.changeThrottle('verticalThrottle', timeDelta * gamePad.axes[4] * this.gamepadSensivity.verticalThrottle);
 
-            if (gamePad.axes[0] > 0.05 || gamePad.axes[0] < 0.05) {
-                this.changeAngle('yaw', timeDelta * gamePad.axes[0] * this.gamepadSensivity.yaw);
-            }
-
-            if (gamePad.axes[2] > 0.05 || gamePad.axes[2] < 0.05) {
-                this.setAngle('roll',  gamePad.axes[2] * this.gamepadSensivity.roll);
-            }
-
-            if (gamePad.axes[3] > 0.05 || gamePad.axes[3] < 0.05) {
-                this.setAngle('pitch', -(gamePad.axes[3]) * this.gamepadSensivity.pitch);
-            }
+            this.changeAngle('yaw', timeDelta * gamePad.axes[3] * this.gamepadSensivity.yaw);
+            this.setAngle('roll',  gamePad.axes[0] * this.gamepadSensivity.roll);
+            this.setAngle('pitch', gamePad.axes[1] * this.gamepadSensivity.pitch);
         }
 
         this.lastGamePadScan = performance.now();
